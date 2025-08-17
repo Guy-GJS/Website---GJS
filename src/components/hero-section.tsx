@@ -69,10 +69,10 @@ export const HeroSection = () => {
 
               {/* Mobile-First Benefits Grid - 2x2 on mobile, stays 2x2 */}
               <div className="grid grid-cols-2 gap-3 sm:gap-4 max-w-md mx-auto lg:mx-0 lg:max-w-lg animate-fade-in delay-400">
-                <div className="bg-white p-3 sm:p-4 rounded-lg sm:rounded-xl shadow-sm border border-gray-200 hover:shadow-md transition-all duration-300">
+                <div className="bg-white p-3 sm:p-4 rounded-lg sm:rounded-xl shadow-sm border border-cyan-200 hover:shadow-md hover:border-cyan-300 transition-all duration-300">
                   <div className="flex flex-col items-center lg:items-start space-y-2">
-                    <div className="w-8 h-8 sm:w-10 sm:h-10 bg-gray-100 rounded-lg flex items-center justify-center">
-                      <DollarSign className="w-4 h-4 sm:w-5 sm:h-5 text-gray-700" />
+                    <div className="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-br from-cyan-50 to-cyan-100 rounded-lg flex items-center justify-center border border-cyan-200">
+                      <DollarSign className="w-4 h-4 sm:w-5 sm:h-5 text-cyan-700" />
                     </div>
                     <div className="text-center lg:text-left">
                       <p className="text-sm sm:text-base font-semibold text-gray-900">Fair Cash</p>
@@ -81,10 +81,10 @@ export const HeroSection = () => {
                   </div>
                 </div>
 
-                <div className="bg-white p-3 sm:p-4 rounded-lg sm:rounded-xl shadow-sm border border-gray-200 hover:shadow-md transition-all duration-300">
+                <div className="bg-white p-3 sm:p-4 rounded-lg sm:rounded-xl shadow-sm border border-cyan-200 hover:shadow-md hover:border-cyan-300 transition-all duration-300">
                   <div className="flex flex-col items-center lg:items-start space-y-2">
-                    <div className="w-8 h-8 sm:w-10 sm:h-10 bg-gray-100 rounded-lg flex items-center justify-center">
-                      <Clock className="w-4 h-4 sm:w-5 sm:h-5 text-gray-700" />
+                    <div className="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-br from-cyan-50 to-cyan-100 rounded-lg flex items-center justify-center border border-cyan-200">
+                      <Clock className="w-4 h-4 sm:w-5 sm:h-5 text-cyan-700" />
                     </div>
                     <div className="text-center lg:text-left">
                       <p className="text-sm sm:text-base font-semibold text-gray-900">Fast Close</p>
@@ -93,10 +93,10 @@ export const HeroSection = () => {
                   </div>
                 </div>
 
-                <div className="bg-white p-3 sm:p-4 rounded-lg sm:rounded-xl shadow-sm border border-gray-200 hover:shadow-md transition-all duration-300">
+                <div className="bg-white p-3 sm:p-4 rounded-lg sm:rounded-xl shadow-sm border border-cyan-200 hover:shadow-md hover:border-cyan-300 transition-all duration-300">
                   <div className="flex flex-col items-center lg:items-start space-y-2">
-                    <div className="w-8 h-8 sm:w-10 sm:h-10 bg-gray-100 rounded-lg flex items-center justify-center">
-                      <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 text-gray-700" />
+                    <div className="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-br from-cyan-50 to-cyan-100 rounded-lg flex items-center justify-center border border-cyan-200">
+                      <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 text-cyan-700" />
                     </div>
                     <div className="text-center lg:text-left">
                       <p className="text-sm sm:text-base font-semibold text-gray-900">No Repairs</p>
@@ -105,10 +105,10 @@ export const HeroSection = () => {
                   </div>
                 </div>
 
-                <div className="bg-white p-3 sm:p-4 rounded-lg sm:rounded-xl shadow-sm border border-gray-200 hover:shadow-md transition-all duration-300">
+                <div className="bg-white p-3 sm:p-4 rounded-lg sm:rounded-xl shadow-sm border border-cyan-200 hover:shadow-md hover:border-cyan-300 transition-all duration-300">
                   <div className="flex flex-col items-center lg:items-start space-y-2">
-                    <div className="w-8 h-8 sm:w-10 sm:h-10 bg-gray-100 rounded-lg flex items-center justify-center">
-                      <Shield className="w-4 h-4 sm:w-5 sm:h-5 text-gray-700" />
+                    <div className="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-br from-cyan-50 to-cyan-100 rounded-lg flex items-center justify-center border border-cyan-200">
+                      <Shield className="w-4 h-4 sm:w-5 sm:h-5 text-cyan-700" />
                     </div>
                     <div className="text-center lg:text-left">
                       <p className="text-sm sm:text-base font-semibold text-gray-900">Save 6%</p>
