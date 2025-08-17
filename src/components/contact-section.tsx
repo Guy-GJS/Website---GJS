@@ -3,42 +3,9 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { Phone, Mail, MapPin, Clock, MessageCircle, Send } from "lucide-react";
+import { MessageCircle, Send } from "lucide-react";
 
 export const ContactSection = () => {
-  const contactInfo = [
-    {
-      icon: Phone,
-      title: "Phone",
-      content: "(555) 123-FAIR",
-      description: "Call us anytime for immediate assistance",
-      color: "from-emerald-600 to-emerald-700",
-      action: "tel:(555)123-FAIR"
-    },
-    {
-      icon: Mail,
-      title: "Email",
-      content: "offers@fairpropertygroup.com",
-      description: "Send us your questions and we'll respond quickly",
-      color: "from-blue-600 to-blue-700",
-      action: "mailto:offers@fairpropertygroup.com"
-    },
-    {
-      icon: MapPin,
-      title: "Service Area",
-      content: "Nationwide Coverage",
-      description: "We buy houses in all major metropolitan areas",
-      color: "from-violet-600 to-violet-700"
-    },
-    {
-      icon: Clock,
-      title: "Hours",
-      content: "24/7 Available",
-      description: "We're here when you need us most",
-      color: "from-violet-600 to-violet-700"
-    }
-  ];
-
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     // Handle form submission here
@@ -59,58 +26,17 @@ export const ContactSection = () => {
             </span>
           </h2>
           <p className="text-lg sm:text-xl text-muted-foreground max-w-3xl mx-auto">
-            Ready to sell your house? Have questions? We're here to help every step of the way.
-            <span className="block mt-2 text-cyan-700 font-semibold">Get your free consultation today!</span>
+            Questions? Let's talk.
+            <span className="block mt-2 text-cyan-700 font-semibold">Fair. Straightforward. Quick.</span>
           </p>
         </div>
 
-        <div className="grid gap-8 lg:grid-cols-2 lg:gap-16">
-          {/* Enhanced Contact Information */}
-          <div className="space-y-8">
-            <div>
-              <h3 className="text-2xl font-semibold mb-6 text-center lg:text-left">Get in Touch</h3>
-              <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-1">
-                {contactInfo.map((item, index) => (
-                  <Card key={index} className="group hover:shadow-lg transition-all duration-300 border border-gray-200 hover:border-gray-300 bg-white">
-                    <CardContent className="p-6">
-                      <div className="flex items-start space-x-4">
-                        <div className={`flex items-center justify-center w-12 h-12 bg-gradient-to-br ${item.color} rounded-xl text-white shadow-lg group-hover:scale-110 transition-transform duration-300`}>
-                          <item.icon className="w-6 h-6" />
-                        </div>
-                        <div className="flex-1">
-                          <h4 className="font-semibold text-sm text-muted-foreground uppercase tracking-wider mb-1">
-                            {item.title}
-                          </h4>
-                          <p className="font-bold text-lg text-gray-900 mb-1">
-                            {item.content}
-                          </p>
-                          <p className="text-sm text-muted-foreground">{item.description}</p>
-                          {item.action && (
-                            <Button 
-                              variant="ghost" 
-                              size="sm" 
-                              className="mt-2 p-0 h-auto text-cyan-700 hover:text-cyan-900"
-                              onClick={() => window.open(item.action, "_self")}
-                            >
-                              Contact Now →
-                            </Button>
-                          )}
-                        </div>
-                      </div>
-                    </CardContent>
-                  </Card>
-                ))}
-              </div>
-            </div>
-
-
-          </div>
-
+        <div className="max-w-2xl mx-auto">
           {/* Enhanced Contact Form */}
           <Card className="bg-white border border-gray-200 shadow-lg">
             <div className="bg-gradient-to-r from-cyan-600 to-cyan-700 p-6 rounded-t-xl">
-              <h3 className="text-2xl font-bold text-white text-center">Send us a Message</h3>
-              <p className="text-cyan-100 text-center mt-2">Get a response within 2 hours</p>
+              <h3 className="text-2xl font-bold text-white text-center">Get Your Offer</h3>
+              <p className="text-cyan-100 text-center mt-2">Quick response guaranteed</p>
             </div>
             <CardContent className="p-6 sm:p-8">
               <form onSubmit={handleSubmit} className="space-y-6">
@@ -195,7 +121,7 @@ export const ContactSection = () => {
                   className="w-full h-14 text-lg font-semibold bg-gradient-to-r from-cyan-600 to-cyan-700 hover:from-cyan-700 hover:to-cyan-800 text-white shadow-md hover:shadow-lg transition-all duration-300"
                 >
                   <Send className="w-5 h-5 mr-2" />
-                  Send Message & Get Free Consultation
+                  Send message & Get an offer
                 </Button>
                 
                 <p className="text-xs text-center text-muted-foreground">

@@ -31,7 +31,7 @@ export const FAQSection = () => {
       id: "fees",
       icon: <Shield className="h-5 w-5 text-cyan-700" />,
       question: "Are there any fees or commissions?",
-      answer: "There are no agent commissions, and we usually cover standard closing costs. The price we offer is the amount you can expect to receive at closing, minus any existing liens or obligations on the property."
+      answer: "No! You save the typical 6% realtor commission fees. Plus, no costs for marketing, staging, showings, or open houses. We usually cover standard closing costs too. The price we offer is the amount you can expect to receive at closing, minus any existing liens or obligations on the property."
     },
     {
       id: "types",

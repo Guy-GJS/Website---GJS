@@ -6,39 +6,39 @@ export const WhyUsSection = () => {
   const reasons = [
     {
       icon: <Users className="h-8 w-8" />,
-      title: "Local Expertise",
-      description: "We're your neighbors who understand the local market, property values, and community needs.",
-      badge: "Local",
+      title: "Fair & Honest",
+      description: "We provide fair cash offers with complete transparency. No games, no gimmicks.",
+      badge: "Fair",
       color: "from-cyan-600 to-cyan-700",
       bgColor: "from-cyan-50 to-cyan-100",
-      stats: "Serving the community for 15+ years"
+      stats: "Established 2020"
     },
     {
       icon: <Award className="h-8 w-8" />,
-      title: "Proven Track Record",
-      description: "Thousands of satisfied homeowners have trusted us with their biggest asset - their home.",
-      badge: "Proven",
+      title: "Straightforward Process",
+      description: "Simple, clear process from start to finish. We explain everything upfront.",
+      badge: "Simple",
       color: "from-emerald-600 to-emerald-700",
       bgColor: "from-emerald-50 to-emerald-100",
-      stats: "10,000+ successful transactions"
+      stats: "No complicated paperwork"
     },
     {
       icon: <Shield className="h-8 w-8" />,
-      title: "Trust & Integrity",
-      description: "We believe in honest, transparent dealings. No pressure, no hidden fees, just fair treatment.",
-      badge: "Trusted",
+      title: "Quick Closing",
+      description: "We move fast when you need us to. Close in days, not months.",
+      badge: "Quick",
       color: "from-violet-600 to-violet-700",
       bgColor: "from-violet-50 to-violet-100",
-      stats: "4.9★ customer satisfaction"
+      stats: "Close in 7-30 days"
     },
     {
       icon: <Clock className="h-8 w-8" />,
-      title: "Speed & Convenience",
-      description: "Skip the traditional selling process. Get a fair offer and close on your timeline, not the market's.",
-      badge: "Fast",
+      title: "No Hassles, Save 6%",
+      description: "Skip the realtor fees, marketing, staging, showings, and open houses. Sell as-is with zero stress.",
+      badge: "Save 6%",
       color: "from-blue-600 to-blue-700",
       bgColor: "from-blue-50 to-blue-100",
-      stats: "Close in as little as 7 days"
+      stats: "Zero agent commissions"
     }
   ];
 
@@ -56,8 +56,8 @@ export const WhyUsSection = () => {
             </span>
           </h2>
           <p className="text-lg sm:text-xl text-muted-foreground max-w-3xl mx-auto">
-            When you're selling your home, you deserve a partner who puts your interests first. 
-            <span className="block mt-2 text-cyan-700 font-semibold">Here's why thousands of homeowners choose Fair Property Group.</span>
+            Fair. Straightforward. Quick.
+            <span className="block mt-2 text-cyan-700 font-semibold">That's our promise to you.</span>
           </p>
         </div>
         
@@ -100,25 +100,7 @@ export const WhyUsSection = () => {
           ))}
         </div>
 
-        {/* Trust Indicators */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center mt-12 pt-12 border-t border-gray-200">
-          <div className="space-y-2">
-            <div className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-cyan-600 to-cyan-700 bg-clip-text text-transparent">10,000+</div>
-            <div className="text-sm text-gray-600">Homes Purchased</div>
-          </div>
-          <div className="space-y-2">
-            <div className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-emerald-600 to-emerald-700 bg-clip-text text-transparent">4.9★</div>
-            <div className="text-sm text-gray-600">Customer Rating</div>
-          </div>
-          <div className="space-y-2">
-            <div className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-violet-600 to-violet-700 bg-clip-text text-transparent">14 Days</div>
-            <div className="text-sm text-gray-600">Average Close</div>
-          </div>
-          <div className="space-y-2">
-            <div className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-blue-600 to-blue-700 bg-clip-text text-transparent">$0</div>
-            <div className="text-sm text-gray-600">Hidden Fees</div>
-          </div>
-        </div>
+
 
       </div>
     </section>

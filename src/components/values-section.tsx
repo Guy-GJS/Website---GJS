@@ -6,39 +6,39 @@ export const ValuesSection = () => {
   const values = [
     {
       icon: <DollarSign className="h-8 w-8" />,
-      title: "Fair Value",
-      description: "We provide competitive cash offers based on current market conditions and your property's true value.",
-      badge: "Guaranteed",
+      title: "Fair Offers",
+      description: "Honest cash offers based on your property's value. No lowball tactics.",
+      badge: "Fair",
       color: "from-gray-700 to-gray-800",
       bgColor: "from-gray-50 to-gray-100",
-      stats: "Average 95% of market value"
+      stats: "Market-based pricing"
     },
     {
       icon: <Clock className="h-8 w-8" />,
-      title: "Quick Closing",
-      description: "Close in as little as 7 days. No waiting for buyer financing or lengthy approval processes.",
-      badge: "Fast Track",
+      title: "Quick Process",
+      description: "Close fast on your timeline. No waiting for financing or approvals.",
+      badge: "Quick",
       color: "from-gray-700 to-gray-800",
       bgColor: "from-gray-50 to-gray-100",
-      stats: "Average 14 days to close"
+      stats: "7-30 days to close"
     },
     {
       icon: <CheckCircle className="h-8 w-8" />,
-      title: "Hassle-Free",
-      description: "No repairs, no showings, no staging. We buy houses in any condition, saving you time and money.",
-      badge: "Easy",
+      title: "Straightforward",
+      description: "Simple process. Clear terms. No complications.",
+      badge: "Simple",
       color: "from-gray-700 to-gray-800",
       bgColor: "from-gray-50 to-gray-100",
-      stats: "Zero preparation needed"
+      stats: "Clear & simple"
     },
     {
       icon: <Shield className="h-8 w-8" />,
-      title: "Transparency",
-      description: "Clear pricing, honest communication, and no hidden fees. You'll know exactly what to expect.",
-      badge: "Trusted",
+      title: "Save 6% in Realtor Fees",
+      description: "No commissions, no marketing costs, no staging, no showings, no open houses. Just a straightforward sale.",
+      badge: "Save 6%",
       color: "from-gray-700 to-gray-800",
       bgColor: "from-gray-50 to-gray-100",
-      stats: "100% transparent process"
+      stats: "Zero agent fees"
     }
   ];
 
@@ -51,11 +51,11 @@ export const ValuesSection = () => {
             <Star className="h-8 w-8 text-gray-700" />
           </div>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight mb-4 text-gray-900">
-            Why Choose Fair Property Group?
+            Our Approach
           </h2>
           <p className="text-lg sm:text-xl text-muted-foreground max-w-3xl mx-auto">
-            We've helped thousands of homeowners sell their properties quickly and fairly. 
-            <span className="block mt-2 text-gray-700 font-semibold">Here's what sets us apart from traditional real estate.</span>
+            Since 2020, we've been helping homeowners with a simple promise:
+            <span className="block mt-2 text-gray-700 font-semibold">Fair. Straightforward. Quick.</span>
           </p>
         </div>
         
@@ -98,25 +98,7 @@ export const ValuesSection = () => {
           ))}
         </div>
 
-        {/* Trust Indicators */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
-          <div className="space-y-2">
-            <div className="text-2xl sm:text-3xl font-bold text-gray-900">10,000+</div>
-            <div className="text-sm text-muted-foreground">Homes Purchased</div>
-          </div>
-          <div className="space-y-2">
-            <div className="text-2xl sm:text-3xl font-bold text-gray-900">4.9★</div>
-            <div className="text-sm text-muted-foreground">Customer Rating</div>
-          </div>
-          <div className="space-y-2">
-            <div className="text-2xl sm:text-3xl font-bold text-gray-900">14 Days</div>
-            <div className="text-sm text-muted-foreground">Average Close</div>
-          </div>
-          <div className="space-y-2">
-            <div className="text-2xl sm:text-3xl font-bold text-gray-900">$0</div>
-            <div className="text-sm text-muted-foreground">Hidden Fees</div>
-          </div>
-        </div>
+
       </div>
     </section>
   );

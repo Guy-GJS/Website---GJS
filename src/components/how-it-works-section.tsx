@@ -50,8 +50,8 @@ export const HowItWorksSection = () => {
     {
       icon: CheckCircle,
       title: "Get paid",
-      description: "We handle all the paperwork and close on your timeline. No repairs, no fees, no hassle.",
-      highlight: "No fees",
+      description: "We handle all the paperwork and close on your timeline. Save 6% in realtor fees - no marketing, staging, showings, or open houses needed.",
+      highlight: "Save 6%",
       highlightIcon: Sparkles,
       color: "from-cyan-600 to-cyan-700",
       bgColor: "from-cyan-50 to-cyan-100",

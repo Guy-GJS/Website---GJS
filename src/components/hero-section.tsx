@@ -38,7 +38,7 @@ export const HeroSection = () => {
   };
 
   return (
-    <section className="relative min-h-screen bg-gradient-to-br from-gray-50 to-cyan-50/30 overflow-hidden">
+    <section id="cta" className="relative min-h-screen bg-gradient-to-br from-gray-50 to-cyan-50/30 overflow-hidden">
       {/* Subtle Background Pattern */}
       <div className="absolute inset-0">
         {/* Grid Pattern Overlay */}
@@ -63,56 +63,60 @@ export const HeroSection = () => {
                 </h1>
                 
                 <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-600 max-w-md mx-auto lg:mx-0 lg:max-w-2xl animate-fade-in delay-200">
-                  Get a guaranteed cash offer within 24 hours. No repairs, no showings, no hassles.
+                  Quick. Fair. Transparent.
                 </p>
               </div>
 
               {/* Mobile-First Benefits Grid - 2x2 on mobile, stays 2x2 */}
               <div className="grid grid-cols-2 gap-3 sm:gap-4 max-w-md mx-auto lg:mx-0 lg:max-w-lg animate-fade-in delay-400">
-                <div className="bg-white p-3 sm:p-4 rounded-lg sm:rounded-xl shadow-sm border border-cyan-200 hover:shadow-md hover:border-cyan-300 transition-all duration-300">
-                  <div className="flex flex-col items-center lg:items-start space-y-2">
-                    <div className="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-br from-cyan-50 to-cyan-100 rounded-lg flex items-center justify-center border border-cyan-200">
-                      <DollarSign className="w-4 h-4 sm:w-5 sm:h-5 text-cyan-700" />
+                <div className="group relative bg-gradient-to-br from-white to-cyan-50/30 p-4 sm:p-5 rounded-xl sm:rounded-2xl shadow-md hover:shadow-xl border border-cyan-100/50 hover:border-cyan-200/50 transition-all duration-300 hover:-translate-y-1">
+                  <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/0 to-cyan-500/5 rounded-xl sm:rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <div className="relative flex flex-col items-center lg:items-start space-y-2.5">
+                    <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-cyan-500 to-cyan-600 rounded-xl flex items-center justify-center shadow-lg group-hover:shadow-cyan-500/25 group-hover:scale-110 transition-all duration-300">
+                      <DollarSign className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
                     </div>
                     <div className="text-center lg:text-left">
-                      <p className="text-sm sm:text-base font-semibold text-gray-900">Fair Cash</p>
-                      <p className="text-xs sm:text-sm text-gray-500">No hidden fees</p>
+                      <p className="text-sm sm:text-base font-bold text-gray-900 group-hover:text-cyan-700 transition-colors duration-300">Fair</p>
+                      <p className="text-xs sm:text-sm text-gray-600 mt-0.5">Honest offers</p>
                     </div>
                   </div>
                 </div>
 
-                <div className="bg-white p-3 sm:p-4 rounded-lg sm:rounded-xl shadow-sm border border-cyan-200 hover:shadow-md hover:border-cyan-300 transition-all duration-300">
-                  <div className="flex flex-col items-center lg:items-start space-y-2">
-                    <div className="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-br from-cyan-50 to-cyan-100 rounded-lg flex items-center justify-center border border-cyan-200">
-                      <Clock className="w-4 h-4 sm:w-5 sm:h-5 text-cyan-700" />
+                <div className="group relative bg-gradient-to-br from-white to-cyan-50/30 p-4 sm:p-5 rounded-xl sm:rounded-2xl shadow-md hover:shadow-xl border border-cyan-100/50 hover:border-cyan-200/50 transition-all duration-300 hover:-translate-y-1">
+                  <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/0 to-cyan-500/5 rounded-xl sm:rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <div className="relative flex flex-col items-center lg:items-start space-y-2.5">
+                    <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-cyan-500 to-cyan-600 rounded-xl flex items-center justify-center shadow-lg group-hover:shadow-cyan-500/25 group-hover:scale-110 transition-all duration-300">
+                      <Clock className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
                     </div>
                     <div className="text-center lg:text-left">
-                      <p className="text-sm sm:text-base font-semibold text-gray-900">Fast Close</p>
-                      <p className="text-xs sm:text-sm text-gray-500">30 days max</p>
+                      <p className="text-sm sm:text-base font-bold text-gray-900 group-hover:text-cyan-700 transition-colors duration-300">Quick</p>
+                      <p className="text-xs sm:text-sm text-gray-600 mt-0.5">7-30 days</p>
                     </div>
                   </div>
                 </div>
 
-                <div className="bg-white p-3 sm:p-4 rounded-lg sm:rounded-xl shadow-sm border border-cyan-200 hover:shadow-md hover:border-cyan-300 transition-all duration-300">
-                  <div className="flex flex-col items-center lg:items-start space-y-2">
-                    <div className="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-br from-cyan-50 to-cyan-100 rounded-lg flex items-center justify-center border border-cyan-200">
-                      <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 text-cyan-700" />
+                <div className="group relative bg-gradient-to-br from-white to-cyan-50/30 p-4 sm:p-5 rounded-xl sm:rounded-2xl shadow-md hover:shadow-xl border border-cyan-100/50 hover:border-cyan-200/50 transition-all duration-300 hover:-translate-y-1">
+                  <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/0 to-cyan-500/5 rounded-xl sm:rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <div className="relative flex flex-col items-center lg:items-start space-y-2.5">
+                    <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-cyan-500 to-cyan-600 rounded-xl flex items-center justify-center shadow-lg group-hover:shadow-cyan-500/25 group-hover:scale-110 transition-all duration-300">
+                      <CheckCircle className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
                     </div>
                     <div className="text-center lg:text-left">
-                      <p className="text-sm sm:text-base font-semibold text-gray-900">No Repairs</p>
-                      <p className="text-xs sm:text-sm text-gray-500">Sell as-is</p>
+                      <p className="text-sm sm:text-base font-bold text-gray-900 group-hover:text-cyan-700 transition-colors duration-300">Straightforward</p>
+                      <p className="text-xs sm:text-sm text-gray-600 mt-0.5">Simple process</p>
                     </div>
                   </div>
                 </div>
 
-                <div className="bg-white p-3 sm:p-4 rounded-lg sm:rounded-xl shadow-sm border border-cyan-200 hover:shadow-md hover:border-cyan-300 transition-all duration-300">
-                  <div className="flex flex-col items-center lg:items-start space-y-2">
-                    <div className="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-br from-cyan-50 to-cyan-100 rounded-lg flex items-center justify-center border border-cyan-200">
-                      <Shield className="w-4 h-4 sm:w-5 sm:h-5 text-cyan-700" />
+                <div className="group relative bg-gradient-to-br from-white to-cyan-50/30 p-4 sm:p-5 rounded-xl sm:rounded-2xl shadow-md hover:shadow-xl border border-cyan-100/50 hover:border-cyan-200/50 transition-all duration-300 hover:-translate-y-1">
+                  <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/0 to-cyan-500/5 rounded-xl sm:rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <div className="relative flex flex-col items-center lg:items-start space-y-2.5">
+                    <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-cyan-500 to-cyan-600 rounded-xl flex items-center justify-center shadow-lg group-hover:shadow-cyan-500/25 group-hover:scale-110 transition-all duration-300">
+                      <Shield className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
                     </div>
                     <div className="text-center lg:text-left">
-                      <p className="text-sm sm:text-base font-semibold text-gray-900">Save 6%</p>
-                      <p className="text-xs sm:text-sm text-gray-500">No agents</p>
+                      <p className="text-sm sm:text-base font-bold text-gray-900 group-hover:text-cyan-700 transition-colors duration-300">Save 6%</p>
+                      <p className="text-xs sm:text-sm text-gray-600 mt-0.5">No realtor fees</p>
                     </div>
                   </div>
                 </div>
