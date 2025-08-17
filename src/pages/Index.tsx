@@ -2,6 +2,7 @@ import { HeroSection } from "@/components/hero-section";
 import { HowItWorksSection } from "@/components/how-it-works-section";
 import { WhyUsSection } from "@/components/why-us-section";
 import { FAQSection } from "@/components/faq-section";
+import { AboutSection } from "@/components/about-section";
 
 import { ContactSection } from "@/components/contact-section";
 import { Footer } from "@/components/footer";
@@ -17,6 +18,7 @@ const Index = () => {
       <FAQSection />
 
       <ContactSection />
+      <AboutSection />
       <Footer />
     </div>
   );

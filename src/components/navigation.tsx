@@ -17,6 +17,7 @@ const Navigation = () => {
   }, []);
 
   const navigationItems = [
+    { name: "About us", href: "#about" },
     { name: "How it works", href: "#how-it-works" },
     { name: "Why us", href: "#why-us" },
     { name: "FAQ", href: "#faq" },
