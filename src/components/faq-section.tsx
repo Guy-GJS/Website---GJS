@@ -13,7 +13,7 @@ export const FAQSection = () => {
       id: "timeline",
       icon: <Clock className="h-5 w-5 text-blue-700" />,
       question: "How fast can you close?",
-      answer: "Most deals close in as little as 7–14 days. If you need more time, we can accommodate your schedule."
+      answer: "Most deals close in as little as 7–30 days. If you need more time, we can accommodate your schedule."
     },
     {
       id: "repairs",
