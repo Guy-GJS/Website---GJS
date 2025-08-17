@@ -12,7 +12,6 @@ export const HeroSection = () => {
     firstName: "",
     lastName: "",
     email: "",
-    phone: "",
     address: "",
     propertyType: "",
     timeline: ""
@@ -178,19 +177,7 @@ export const HeroSection = () => {
                       />
                     </div>
                     
-                    {/* Phone */}
-                    <div>
-                      <Label htmlFor="phone" className="sr-only">Phone</Label>
-                      <Input 
-                        id="phone" 
-                        type="tel" 
-                        placeholder="Phone Number*" 
-                        required 
-                        className="h-10 sm:h-12 text-sm sm:text-base border-gray-200 focus:border-primary"
-                        value={formData.phone}
-                        onChange={handleInputChange}
-                      />
-                    </div>
+
                     
                     {/* Property Address */}
                     <div>

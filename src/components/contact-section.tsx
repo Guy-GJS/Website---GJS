@@ -70,15 +70,7 @@ export const ContactSection = () => {
                     className="mt-1 h-12 border-2 border-border focus:border-primary transition-colors"
                   />
                 </div>
-                <div>
-                  <Label htmlFor="phone" className="text-sm font-semibold text-foreground">Phone Number</Label>
-                  <Input 
-                    id="phone" 
-                    name="phone" 
-                    type="tel" 
-                    className="mt-1 h-12 border-2 border-border focus:border-primary transition-colors"
-                  />
-                </div>
+
                 <div>
                   <Label htmlFor="propertyAddress" className="text-sm font-semibold text-foreground">Property Address</Label>
                   <Input 

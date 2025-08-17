@@ -14,12 +14,6 @@ export const Footer = () => {
               </p>
               <div className="space-y-2 text-sm sm:text-base text-gray-400">
                 <p className="flex items-center justify-center sm:justify-start gap-2">
-                  <span>📞</span>
-                  <a href="tel:555-123-3247" className="hover:text-white transition-colors">
-                    (555) 123-FAIR
-                  </a>
-                </p>
-                <p className="flex items-center justify-center sm:justify-start gap-2">
                   <span>✉️</span>
                   <a href="mailto:offers@fairpropertygroup.com" className="hover:text-white transition-colors break-all">
                     offers@fairpropertygroup.com
