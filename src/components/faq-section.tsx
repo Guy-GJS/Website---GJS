@@ -1,5 +1,6 @@
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { Clock, Home, DollarSign, FileText, Building, Shield, CheckCircle } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Clock, Home, DollarSign, FileText, Building, Shield, CheckCircle, ArrowRight } from "lucide-react";
 
 export const FAQSection = () => {
   const faqData = [
@@ -7,7 +8,7 @@ export const FAQSection = () => {
       id: "process",
       icon: <FileText className="h-5 w-5 text-cyan-700" />,
       question: "How does the process work?",
-      answer: "We keep it simple: tell us about your property, we schedule a quick walkthrough (virtual or in-person), and you receive a fair, no-obligation cash offer. If you accept, we handle the paperwork and close on your timeline."
+      answer: "We keep it simple: tell us about your property through our form, our advanced models analyze your property and market data to calculate the best offer, and you receive a fair, no-obligation cash offer via email within 24 hours. If you accept, we handle the paperwork and close on your timeline."
     },
     {
       id: "timeline",
@@ -25,7 +26,7 @@ export const FAQSection = () => {
       id: "offer",
       icon: <DollarSign className="h-5 w-5 text-violet-700" />,
       question: "How do you determine your offer?",
-      answer: "We consider the home's condition, location, recent comparable sales, and current market trends. Our goal is to provide a fair cash offer that works for both sides."
+      answer: "Our advanced models analyze your home's condition, location, recent comparable sales, and current market trends to calculate the best offer we can provide. We use sophisticated algorithms and market data to ensure fair, competitive offers that work for both sides."
     },
     {
       id: "fees",
@@ -92,9 +93,26 @@ export const FAQSection = () => {
         </div>
 
         <div className="text-center mt-12">
-          <div className="inline-flex items-center gap-2 text-sm text-cyan-700 bg-cyan-50 px-4 py-2 rounded-full border border-cyan-200">
+          <div className="inline-flex items-center gap-2 text-sm text-cyan-700 bg-cyan-50 px-4 py-2 rounded-full border border-cyan-200 mb-8">
             <CheckCircle className="h-4 w-4 text-green-600" />
             <span>All offers are completely free with no obligation</span>
+          </div>
+          
+          {/* CTA Button */}
+          <div>
+            <Button
+              size="lg"
+              className="h-14 px-8 text-lg font-semibold bg-gradient-to-r from-cyan-600 to-cyan-700 hover:from-cyan-700 hover:to-cyan-800 text-white shadow-lg hover:shadow-xl transition-all duration-300"
+              onClick={() => {
+                document.getElementById('cta')?.scrollIntoView({ behavior: 'smooth' });
+              }}
+            >
+              Get Your Offer
+              <ArrowRight className="w-5 h-5 ml-2" />
+            </Button>
+            <p className="text-sm text-muted-foreground mt-3">
+              Free • No obligation • 24-hour response
+            </p>
           </div>
         </div>
       </div>

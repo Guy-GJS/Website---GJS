@@ -1,6 +1,7 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { CheckCircle, Clock, Shield, DollarSign, Star, TrendingUp, Users, Award } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { CheckCircle, Clock, Shield, DollarSign, Star, TrendingUp, Users, Award, ArrowRight } from "lucide-react";
 
 export const WhyUsSection = () => {
   const reasons = [
@@ -11,7 +12,7 @@ export const WhyUsSection = () => {
       badge: "Fair",
       color: "from-cyan-600 to-cyan-700",
       bgColor: "from-cyan-50 to-cyan-100",
-      stats: "Established 2020"
+      stats: "Fair & Honest"
     },
     {
       icon: <Award className="h-8 w-8" />,
@@ -100,7 +101,22 @@ export const WhyUsSection = () => {
           ))}
         </div>
 
-
+        {/* CTA Button */}
+        <div className="text-center mt-16">
+          <Button
+            size="lg"
+            className="h-14 px-8 text-lg font-semibold bg-gradient-to-r from-cyan-600 to-cyan-700 hover:from-cyan-700 hover:to-cyan-800 text-white shadow-lg hover:shadow-xl transition-all duration-300"
+            onClick={() => {
+              document.getElementById('cta')?.scrollIntoView({ behavior: 'smooth' });
+            }}
+          >
+            Get Your Offer
+            <ArrowRight className="w-5 h-5 ml-2" />
+          </Button>
+          <p className="text-sm text-muted-foreground mt-3">
+            Free • No obligation • 24-hour response
+          </p>
+        </div>
 
       </div>
     </section>

@@ -1,5 +1,6 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import { 
   Home, 
   FileText, 
@@ -30,23 +31,14 @@ export const HowItWorksSection = () => {
     {
       icon: FileText,
       title: "Get your cash offer",
-      description: "We'll schedule a quick walkthrough and provide you with a fair, no-obligation offer within 24 hours.",
+      description: "Using advanced models and market data, we calculate the best offer we can provide and deliver it to your email within 24 hours.",
       highlight: "24 hours",
       highlightIcon: Clock,
       color: "from-cyan-600 to-cyan-700",
       bgColor: "from-cyan-50 to-cyan-100",
       delay: "100ms"
     },
-    {
-      icon: DollarSign,
-      title: "Choose your closing date",
-      description: "Accept our offer and pick a closing date that works for you - as fast as 7 days or take your time.",
-      highlight: "7 days",
-      highlightIcon: Zap,
-      color: "from-cyan-600 to-cyan-700",
-      bgColor: "from-cyan-50 to-cyan-100",
-      delay: "200ms"
-    },
+
     {
       icon: CheckCircle,
       title: "Get paid",
@@ -216,6 +208,22 @@ export const HowItWorksSection = () => {
           </div>
         </div>
 
+        {/* CTA Button */}
+        <div className="text-center mt-16">
+          <Button
+            size="lg"
+            className="h-14 px-8 text-lg font-semibold bg-gradient-to-r from-cyan-600 to-cyan-700 hover:from-cyan-700 hover:to-cyan-800 text-white shadow-lg hover:shadow-xl transition-all duration-300"
+            onClick={() => {
+              document.getElementById('cta')?.scrollIntoView({ behavior: 'smooth' });
+            }}
+          >
+            Get Your Offer
+            <ArrowRight className="w-5 h-5 ml-2" />
+          </Button>
+          <p className="text-sm text-muted-foreground mt-3">
+            Free • No obligation • 24-hour response
+          </p>
+        </div>
 
       </div>
     </section>

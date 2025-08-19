@@ -1,6 +1,7 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Users, Handshake, Heart } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Users, Handshake, Heart, ArrowRight } from "lucide-react";
 
 export const AboutSection = () => {
   const highlights = [
@@ -81,6 +82,23 @@ export const AboutSection = () => {
               </CardContent>
             </Card>
           ))}
+        </div>
+
+        {/* CTA Button */}
+        <div className="text-center mt-16">
+          <Button
+            size="lg"
+            className="h-14 px-8 text-lg font-semibold bg-gradient-to-r from-cyan-600 to-cyan-700 hover:from-cyan-700 hover:to-cyan-800 text-white shadow-lg hover:shadow-xl transition-all duration-300"
+            onClick={() => {
+              document.getElementById('cta')?.scrollIntoView({ behavior: 'smooth' });
+            }}
+          >
+            Get Your Offer
+            <ArrowRight className="w-5 h-5 ml-2" />
+          </Button>
+          <p className="text-sm text-muted-foreground mt-3">
+            Free • No obligation • 24-hour response
+          </p>
         </div>
       </div>
     </section>

@@ -10,7 +10,7 @@ export const Footer = () => {
               <h3 className="text-lg sm:text-xl font-bold mb-3 sm:mb-4 text-white">Fair Property Group</h3>
               <p className="text-sm sm:text-base text-gray-400 leading-relaxed mb-4">
                 We buy houses fast for cash. Fair offers, quick closings, 
-                and hassle-free transactions since 2020.
+                and hassle-free transactions.
               </p>
               <div className="space-y-2 text-sm sm:text-base text-gray-400">
                 <p className="flex items-center justify-center sm:justify-start gap-2">
