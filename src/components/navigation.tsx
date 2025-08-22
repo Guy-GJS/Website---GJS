@@ -63,7 +63,7 @@ const Navigation = () => {
                 <span className="hidden sm:inline">Fair Property Group</span>
                 <span className="sm:hidden">Fair Property</span>
               </span>
-              <span className="text-[10px] sm:text-xs text-muted-foreground font-medium hidden sm:block tracking-wider uppercase">Premium Cash Buyers</span>
+
             </div>
           </Link>
 
@@ -124,7 +124,7 @@ const Navigation = () => {
                       <span className="text-lg font-bold text-gradient">
                         Fair Property Group
                       </span>
-                      <span className="text-xs text-muted-foreground uppercase tracking-wider">Premium Cash Buyers</span>
+
                     </div>
                   </Link>
                   
