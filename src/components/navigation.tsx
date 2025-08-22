@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { Menu, Home } from "lucide-react";
+import { Menu, Home, ArrowRight, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 
@@ -10,18 +10,18 @@ const Navigation = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
+      setIsScrolled(window.scrollY > 10);
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const navigationItems = [
-    { name: "About us", href: "#about" },
     { name: "How it works", href: "#how-it-works" },
     { name: "Why us", href: "#why-us" },
     { name: "FAQ", href: "#faq" },
-    { name: "Contact us", href: "#contact" },
+    { name: "Contact", href: "#contact" },
+    { name: "About", href: "#about" },
   ];
 
   const handleLinkClick = () => {
@@ -39,110 +39,124 @@ const Navigation = () => {
   };
 
   return (
-    <nav className={`sticky top-0 z-50 w-full transition-all duration-300 ${
+    <nav className={`fixed top-0 z-50 w-full transition-all duration-500 ${
       isScrolled 
-        ? "bg-background/95 backdrop-blur-md shadow-lg border-b" 
-        : "bg-background/80 backdrop-blur-sm border-b border-transparent"
+        ? "glass shadow-glass py-3" 
+        : "bg-transparent py-4"
     }`}>
       <div className="px-4 sm:px-6 lg:px-8">
         <div className="flex h-14 sm:h-16 items-center justify-between max-w-7xl mx-auto">
-          {/* Enhanced Logo */}
-          <Link to="/" className="flex items-center space-x-3 group">
+          {/* Modern Logo */}
+          <Link to="/" className="flex items-center space-x-3 group relative">
             <div className="relative">
-              {/* Main logo container with improved design */}
-              <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-cyan-500 via-cyan-600 to-cyan-700 rounded-xl flex items-center justify-center transition-all duration-300 group-hover:from-cyan-600 group-hover:via-cyan-700 group-hover:to-cyan-800 shadow-lg group-hover:shadow-xl group-hover:shadow-cyan-500/25 group-hover:scale-105">
-                <div className="relative">
-                  {/* House icon with improved styling */}
-                  <Home className="w-5 h-5 sm:w-6 sm:h-6 text-white drop-shadow-sm" />
-                  {/* Subtle accent dot */}
-                  <div className="absolute -top-1 -right-1 w-2 h-2 bg-white/30 rounded-full animate-pulse"></div>
+              {/* Sleek logo container */}
+              <div className="relative w-10 h-10 sm:w-11 sm:h-11">
+                <div className="absolute inset-0 bg-gradient-to-br from-primary to-accent rounded-2xl opacity-90 group-hover:opacity-100 transition-all duration-500 group-hover:scale-110 group-hover:rotate-3"></div>
+                <div className="relative w-full h-full bg-gradient-to-br from-primary to-accent rounded-2xl flex items-center justify-center shadow-lg group-hover:shadow-glow transition-all duration-300">
+                  <Home className="w-5 h-5 sm:w-5 sm:h-5 text-white" strokeWidth={2.5} />
+                  <Sparkles className="absolute -top-1 -right-1 w-3 h-3 text-yellow-300 animate-pulse" />
                 </div>
               </div>
-              {/* Background glow effect */}
-              <div className="absolute inset-0 bg-gradient-to-br from-cyan-400 to-cyan-600 rounded-xl opacity-0 group-hover:opacity-20 transition-opacity duration-300 -z-10 blur-lg"></div>
             </div>
             <div className="flex flex-col">
-              <span className="text-base sm:text-lg md:text-xl font-bold text-gray-900 group-hover:text-cyan-700 transition-colors duration-300">
+              <span className="text-base sm:text-lg font-bold bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent group-hover:from-primary group-hover:to-accent transition-all duration-300">
                 <span className="hidden sm:inline">Fair Property Group</span>
                 <span className="sm:hidden">Fair Property</span>
               </span>
-              <span className="text-xs text-gray-500 font-medium hidden sm:block group-hover:text-cyan-600 transition-colors duration-300">Quick. Fair. Transparent.</span>
+
             </div>
           </Link>
 
-          {/* Enhanced Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-6 lg:space-x-8">
-            {navigationItems.map((item) => (
+          {/* Sleek Desktop Navigation */}
+          <div className="hidden md:flex items-center space-x-1 lg:space-x-2">
+            {navigationItems.map((item, index) => (
               <button
                 key={item.name}
                 onClick={() => scrollToSection(item.href)}
-                className="relative text-sm font-medium text-gray-600 hover:text-cyan-700 transition-all duration-300 group"
+                className="relative px-4 py-2 text-sm font-medium text-gray-700 hover:text-primary transition-all duration-300 group"
+                style={{ animationDelay: `${index * 50}ms` }}
               >
-                {item.name}
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-cyan-600 transition-all duration-300 group-hover:w-full"></span>
+                <span className="relative z-10">{item.name}</span>
+                <div className="absolute inset-0 bg-gradient-to-r from-primary/0 via-primary/5 to-primary/0 opacity-0 group-hover:opacity-100 rounded-lg transition-all duration-300 transform scale-x-0 group-hover:scale-x-100"></div>
               </button>
             ))}
             
-            {/* CTA Buttons */}
-            <div className="flex items-center space-x-3">
+            {/* Modern CTA Button */}
+            <div className="flex items-center ml-4">
               <Button 
                 onClick={() => scrollToSection("#cta")}
-                className="bg-gradient-to-r from-cyan-600 to-cyan-700 hover:from-cyan-700 hover:to-cyan-800 text-white shadow-sm hover:shadow-md transition-all duration-300 text-sm"
+                className="relative overflow-hidden bg-gradient-to-r from-primary to-accent hover:from-primary hover:to-accent text-white shadow-lg hover:shadow-glow transition-all duration-300 text-sm px-6 py-2 rounded-full font-semibold group"
               >
-                Get an offer
+                <span className="relative z-10 flex items-center gap-2">
+                  Get Cash Offer
+                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
+                </span>
+                <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></div>
               </Button>
             </div>
           </div>
 
-          {/* Mobile Menu Button */}
+          {/* Sleek Mobile Menu Button */}
           <div className="md:hidden">
             <Sheet open={isOpen} onOpenChange={setIsOpen}>
               <SheetTrigger asChild>
-                <Button variant="ghost" size="icon" className="h-8 w-8 sm:h-9 sm:w-9">
-                  <Menu className="h-5 w-5 sm:h-6 sm:w-6" />
+                <Button 
+                  variant="ghost" 
+                  size="icon" 
+                  className="h-10 w-10 rounded-xl glass hover:bg-white/20 transition-all duration-300"
+                >
+                  <Menu className="h-5 w-5" strokeWidth={2} />
                   <span className="sr-only">Toggle menu</span>
                 </Button>
               </SheetTrigger>
-              <SheetContent side="right" className="w-[300px] sm:w-[400px] bg-white">
+              <SheetContent side="right" className="w-[300px] sm:w-[400px] glass border-l border-white/10">
                 <div className="flex flex-col space-y-6 mt-6">
                   {/* Mobile Logo */}
                   <Link
                     to="/"
                     onClick={handleLinkClick}
-                    className="flex items-center space-x-3 pb-6 border-b border-border/50"
+                    className="flex items-center space-x-3 pb-6 border-b border-border/20"
                   >
-                    <div className="w-10 h-10 bg-gradient-to-br from-cyan-600 to-cyan-700 rounded-lg flex items-center justify-center shadow-sm">
-                      <Home className="w-5 h-5 text-white" />
+                    <div className="w-10 h-10 bg-gradient-to-br from-primary to-accent rounded-2xl flex items-center justify-center shadow-lg">
+                      <Home className="w-5 h-5 text-white" strokeWidth={2.5} />
                     </div>
                     <div className="flex flex-col">
-                      <span className="text-lg font-bold text-gray-900">
+                      <span className="text-lg font-bold text-gradient">
                         Fair Property Group
                       </span>
-                      <span className="text-xs text-gray-500">Cash Home Buyers</span>
+
                     </div>
                   </Link>
                   
                   {/* Mobile Navigation Links */}
-                  <div className="flex flex-col space-y-4">
-                    {navigationItems.map((item) => (
+                  <div className="flex flex-col space-y-2">
+                    {navigationItems.map((item, index) => (
                       <button
                         key={item.name}
                         onClick={() => scrollToSection(item.href)}
-                        className="flex items-center py-3 px-4 text-left font-medium text-gray-700 transition-all duration-300 hover:bg-gray-50 hover:text-gray-900 rounded-lg"
+                        className="flex items-center py-3 px-4 text-left font-medium text-gray-700 transition-all duration-300 hover:bg-gradient-to-r hover:from-primary/5 hover:to-accent/5 hover:text-primary rounded-xl relative overflow-hidden group"
+                        style={{ animationDelay: `${index * 50}ms` }}
                       >
-                        {item.name}
+                        <span className="relative z-10">{item.name}</span>
+                        <ArrowRight className="ml-auto w-4 h-4 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all duration-300" />
                       </button>
                     ))}
                   </div>
                   
-                  {/* Mobile CTA Buttons */}
-                  <div className="flex flex-col space-y-3 pt-6 border-t border-border/50">
+                  {/* Mobile CTA Button */}
+                  <div className="flex flex-col space-y-3 pt-6 border-t border-border/20">
                     <Button 
-                      onClick={() => scrollToSection("#cta")} 
-                      className="w-full bg-gradient-to-r from-cyan-600 to-cyan-700 hover:from-cyan-700 hover:to-cyan-800 text-white shadow-sm"
+                      onClick={() => {
+                        scrollToSection("#cta");
+                        setIsOpen(false);
+                      }} 
+                      className="w-full bg-gradient-to-r from-primary to-accent hover:from-primary hover:to-accent text-white shadow-lg hover:shadow-glow transition-all duration-300 rounded-full font-semibold group"
                       size="lg"
                     >
-                      Get an offer
+                      <span className="flex items-center justify-center gap-2">
+                        Get Cash Offer
+                        <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
+                      </span>
                     </Button>
                   </div>
                 </div>

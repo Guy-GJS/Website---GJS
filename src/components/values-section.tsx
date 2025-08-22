@@ -54,7 +54,7 @@ export const ValuesSection = () => {
             Our Approach
           </h2>
           <p className="text-lg sm:text-xl text-muted-foreground max-w-3xl mx-auto">
-            Since 2020, we've been helping homeowners with a simple promise:
+            We help homeowners with a simple promise:
             <span className="block mt-2 text-gray-700 font-semibold">Fair. Straightforward. Quick.</span>
           </p>
         </div>

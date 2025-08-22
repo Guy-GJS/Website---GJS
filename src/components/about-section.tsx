@@ -1,6 +1,7 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Users, Handshake, Heart } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Users, Handshake, Heart, ArrowRight } from "lucide-react";
 
 export const AboutSection = () => {
   const highlights = [
@@ -59,11 +60,11 @@ export const AboutSection = () => {
           {highlights.map((item, index) => (
             <Card
               key={index}
-              className="relative overflow-hidden border border-gray-200 hover:border-gray-300 bg-white shadow-sm hover:shadow-lg transition-all duration-300 group"
+              className="relative overflow-hidden border border-gray-200 hover:border-gray-300 bg-white shadow-sm hover:shadow-lg transition-all duration-300 group h-full min-h-[300px]"
            >
-              <CardContent className="p-6 sm:p-8 text-center space-y-4 relative">
+              <CardContent className="p-6 sm:p-8 text-center space-y-4 relative h-full flex flex-col">
                 <div className={`absolute inset-0 bg-gradient-to-br ${item.bgColor} opacity-0 group-hover:opacity-100 transition-opacity duration-500`}></div>
-                <div className="relative z-10">
+                <div className="relative z-10 flex-1 flex flex-col">
                   <div className="relative mb-6">
                     <div className={`inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br ${item.color} text-white shadow-lg group-hover:scale-110 transition-transform duration-300`}>
                       {item.icon}
@@ -75,12 +76,31 @@ export const AboutSection = () => {
                       {item.badge}
                     </Badge>
                   </div>
-                  <h3 className="text-xl font-semibold text-gray-900 mb-3">{item.title}</h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed">{item.description}</p>
+                  <div className="flex-1 flex flex-col">
+                    <h3 className="text-xl font-semibold text-gray-900 mb-3">{item.title}</h3>
+                    <p className="text-sm text-muted-foreground leading-relaxed flex-1">{item.description}</p>
+                  </div>
                 </div>
               </CardContent>
             </Card>
           ))}
+        </div>
+
+        {/* CTA Button */}
+        <div className="text-center mt-16">
+          <Button
+            size="lg"
+            className="h-14 px-8 text-lg font-semibold bg-gradient-to-r from-cyan-600 to-cyan-700 hover:from-cyan-700 hover:to-cyan-800 text-white shadow-lg hover:shadow-xl transition-all duration-300"
+            onClick={() => {
+              document.getElementById('cta')?.scrollIntoView({ behavior: 'smooth' });
+            }}
+          >
+            Get Your Offer
+            <ArrowRight className="w-5 h-5 ml-2" />
+          </Button>
+          <p className="text-sm text-muted-foreground mt-3">
+            Free • No obligation • 24-hour response
+          </p>
         </div>
       </div>
     </section>

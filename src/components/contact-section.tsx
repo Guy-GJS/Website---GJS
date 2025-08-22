@@ -1,15 +1,39 @@
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
-import { MessageCircle, Send } from "lucide-react";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { MessageCircle, ArrowRight, CheckCircle, Clock, Shield, TrendingUp } from "lucide-react";
 
 export const ContactSection = () => {
-  const handleSubmit = (e: React.FormEvent) => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [formData, setFormData] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    address: "",
+    propertyType: "",
+    timeline: ""
+  });
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission here
-    console.log("Contact form submitted");
+    setIsSubmitting(true);
+    
+    // Simulate form submission
+    setTimeout(() => {
+      setIsSubmitting(false);
+      // You can add success notification here
+      console.log("Form submitted:", formData);
+    }, 2000);
+  };
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFormData({
+      ...formData,
+      [e.target.id]: e.target.value
+    });
   };
 
   return (
@@ -31,95 +55,158 @@ export const ContactSection = () => {
           </p>
         </div>
 
-        <div className="max-w-2xl mx-auto">
-          {/* Enhanced Contact Form */}
-          <Card className="bg-white border border-gray-200 shadow-lg">
-            <div className="bg-gradient-to-r from-cyan-600 to-cyan-700 p-6 rounded-t-xl">
-              <h3 className="text-2xl font-bold text-white text-center">Get Your Offer</h3>
-              <p className="text-cyan-100 text-center mt-2">Quick response guaranteed</p>
+        <div className="max-w-md mx-auto">
+          <Card className="border-0 shadow-2xl bg-white/95 backdrop-blur-md overflow-hidden">
+            {/* Form Header */}
+            <div className="bg-gradient-to-r from-primary via-primary to-accent p-6 sm:p-8 relative overflow-hidden">
+              <div className="absolute inset-0 bg-[linear-gradient(45deg,transparent_30%,rgba(255,255,255,0.1)_50%,transparent_70%)] animate-shimmer"></div>
+              <div className="relative">
+                <h2 className="text-2xl sm:text-3xl font-bold text-white">
+                  Get Your Cash Offer
+                </h2>
+                <p className="text-white/90 mt-2">
+                  Free • No Obligation • 24hr Response
+                </p>
+                <div className="flex items-center gap-2 mt-4">
+                  <TrendingUp className="w-5 h-5 text-white/80" />
+                  <span className="text-sm text-white/80">Instant property valuation</span>
+                </div>
+              </div>
             </div>
+            
             <CardContent className="p-6 sm:p-8">
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <div className="grid gap-4 sm:grid-cols-2">
-                  <div>
-                    <Label htmlFor="firstName" className="text-sm font-semibold text-foreground">First Name *</Label>
+              <form onSubmit={handleSubmit} className="space-y-4">
+                {/* Name Fields */}
+                <div className="grid grid-cols-2 gap-3">
+                  <div className="space-y-1">
+                    <Label htmlFor="firstName" className="sr-only">First Name</Label>
                     <Input 
                       id="firstName" 
-                      name="firstName" 
+                      placeholder="First Name" 
                       required 
-                      className="mt-1 h-12 border border-gray-300 focus:border-gray-500 transition-colors"
+                      className="h-11 border-gray-200 focus:border-primary focus:ring-primary/20 transition-all duration-300 rounded-xl"
+                      value={formData.firstName}
+                      onChange={handleInputChange}
                     />
                   </div>
-                  <div>
-                    <Label htmlFor="lastName" className="text-sm font-semibold text-foreground">Last Name *</Label>
+                  <div className="space-y-1">
+                    <Label htmlFor="lastName" className="sr-only">Last Name</Label>
                     <Input 
                       id="lastName" 
-                      name="lastName" 
+                      placeholder="Last Name" 
                       required 
-                      className="mt-1 h-12 border border-gray-300 focus:border-gray-500 transition-colors"
+                      className="h-11 border-gray-200 focus:border-primary focus:ring-primary/20 transition-all duration-300 rounded-xl"
+                      value={formData.lastName}
+                      onChange={handleInputChange}
                     />
                   </div>
                 </div>
-                <div>
-                  <Label htmlFor="email" className="text-sm font-semibold text-foreground">Email Address *</Label>
+                
+                {/* Email */}
+                <div className="space-y-1">
+                  <Label htmlFor="email" className="sr-only">Email</Label>
                   <Input 
                     id="email" 
-                    name="email" 
                     type="email" 
+                    placeholder="Email Address" 
                     required 
-                    className="mt-1 h-12 border-2 border-border focus:border-primary transition-colors"
+                    className="h-11 border-gray-200 focus:border-primary focus:ring-primary/20 transition-all duration-300 rounded-xl"
+                    value={formData.email}
+                    onChange={handleInputChange}
                   />
                 </div>
-
-                <div>
-                  <Label htmlFor="propertyAddress" className="text-sm font-semibold text-foreground">Property Address</Label>
+                
+                {/* Property Address */}
+                <div className="space-y-1">
+                  <Label htmlFor="address" className="sr-only">Property Address</Label>
                   <Input 
-                    id="propertyAddress" 
-                    name="propertyAddress" 
-                    placeholder="123 Main St, City, State 12345"
-                    className="mt-1 h-12 border-2 border-border focus:border-primary transition-colors"
-                  />
-                </div>
-                <div>
-                  <Label htmlFor="message" className="text-sm font-semibold text-foreground">Tell us about your situation *</Label>
-                  <Textarea 
-                    id="message" 
-                    name="message" 
-                    rows={4} 
-                    placeholder="Tell us about your property, timeline, or any questions you have..."
+                    id="address" 
+                    placeholder="Property Address" 
                     required 
-                    className="mt-1 border border-gray-300 focus:border-gray-500 transition-colors resize-none"
+                    className="h-11 border-gray-200 focus:border-primary focus:ring-primary/20 transition-all duration-300 rounded-xl"
+                    value={formData.address}
+                    onChange={handleInputChange}
                   />
                 </div>
                 
-                {/* Trust Indicators */}
-                <div className="flex items-center justify-center gap-6 py-4 border-t border-border/50">
-                  <div className="flex items-center gap-2 text-sm text-gray-600">
-                    <div className="w-2 h-2 bg-emerald-500 rounded-full"></div>
-                    <span>Secure & Private</span>
-                  </div>
-                  <div className="flex items-center gap-2 text-sm text-gray-600">
-                    <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
-                    <span>No Spam</span>
-                  </div>
-                  <div className="flex items-center gap-2 text-sm text-gray-600">
-                    <div className="w-2 h-2 bg-violet-500 rounded-full"></div>
-                    <span>Quick Response</span>
-                  </div>
+                {/* Property Type */}
+                <div className="space-y-1">
+                  <Label htmlFor="propertyType" className="sr-only">Property Type</Label>
+                  <Select onValueChange={(value) => setFormData({...formData, propertyType: value})}>
+                    <SelectTrigger className="h-11 border-gray-200 focus:border-primary focus:ring-primary/20 transition-all duration-300 rounded-xl">
+                      <SelectValue placeholder="Property Type" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="single-family">Single Family Home</SelectItem>
+                      <SelectItem value="townhouse">Townhouse</SelectItem>
+                      <SelectItem value="condo">Condominium</SelectItem>
+                      <SelectItem value="multi-family">Multi-Family</SelectItem>
+                      <SelectItem value="land">Vacant Land</SelectItem>
+                      <SelectItem value="other">Other</SelectItem>
+                    </SelectContent>
+                  </Select>
                 </div>
                 
+                {/* Timeline */}
+                <div className="space-y-1">
+                  <Label htmlFor="timeline" className="sr-only">Selling Timeline</Label>
+                  <Select onValueChange={(value) => setFormData({...formData, timeline: value})}>
+                    <SelectTrigger className="h-11 border-gray-200 focus:border-primary focus:ring-primary/20 transition-all duration-300 rounded-xl">
+                      <SelectValue placeholder="How soon do you need to sell?" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="asap">ASAP</SelectItem>
+                      <SelectItem value="30-days">Within 30 days</SelectItem>
+                      <SelectItem value="60-days">Within 60 days</SelectItem>
+                      <SelectItem value="90-days">Within 90 days</SelectItem>
+                      <SelectItem value="flexible">I'm flexible</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+                
+                {/* Submit Button */}
                 <Button 
                   type="submit" 
-                  className="w-full h-14 text-lg font-semibold bg-gradient-to-r from-cyan-600 to-cyan-700 hover:from-cyan-700 hover:to-cyan-800 text-white shadow-md hover:shadow-lg transition-all duration-300"
+                  size="lg" 
+                  className="w-full h-12 text-base font-semibold bg-gradient-to-r from-primary to-accent hover:from-primary hover:to-accent text-white shadow-lg hover:shadow-glow transition-all duration-300 rounded-xl group"
+                  disabled={isSubmitting}
                 >
-                  <Send className="w-5 h-5 mr-2" />
-                  Send message & Get an offer
+                  {isSubmitting ? (
+                    <span className="flex items-center justify-center gap-2">
+                      <span className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin"></span>
+                      Processing...
+                    </span>
+                  ) : (
+                    <span className="flex items-center justify-center gap-2">
+                      Get My Cash Offer
+                      <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
+                    </span>
+                  )}
                 </Button>
+
+                {/* Trust Badges */}
+                <div className="flex items-center justify-center gap-4 pt-4 border-t border-gray-100">
+                  <div className="flex items-center gap-1.5 text-sm text-muted-foreground">
+                    <CheckCircle className="w-4 h-4 text-success" />
+                    <span>No fees</span>
+                  </div>
+                  <div className="flex items-center gap-1.5 text-sm text-muted-foreground">
+                    <Clock className="w-4 h-4 text-trust" />
+                    <span>24hr reply</span>
+                  </div>
+                  <div className="flex items-center gap-1.5 text-sm text-muted-foreground">
+                    <Shield className="w-4 h-4 text-primary" />
+                    <span>Secure</span>
+                  </div>
+                </div>
                 
-                <p className="text-xs text-center text-muted-foreground">
-                  By submitting this form, you agree to our{' '}
-                  <a href="/privacy" className="text-gray-700 hover:underline">Privacy Policy</a>{' '}
-                  and consent to be contacted about your property.
+                {/* Privacy Notice */}
+                <p className="text-xs text-center text-muted-foreground px-2">
+                  Your information is secure and will never be shared.
+                  By submitting, you agree to our{' '}
+                  <a href="/privacy" className="text-primary hover:underline">
+                    Privacy Policy
+                  </a>.
                 </p>
               </form>
             </CardContent>
