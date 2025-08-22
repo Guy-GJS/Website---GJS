@@ -4,7 +4,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Card, CardContent } from "@/components/ui/card";
-import { ArrowRight, CheckCircle, Clock, DollarSign } from "lucide-react";
+import { ArrowRight, CheckCircle, Clock, DollarSign, Sparkles, TrendingUp, Shield, Zap } from "lucide-react";
 
 export const HeroSection = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -37,123 +37,135 @@ export const HeroSection = () => {
   };
 
   return (
-    <section id="cta" className="relative min-h-screen bg-gradient-to-br from-gray-50 to-cyan-50/30 overflow-hidden">
-      {/* Subtle Background Pattern */}
+    <section id="cta" className="relative min-h-screen flex items-center overflow-hidden bg-gradient-to-br from-slate-50 via-white to-primary/5">
+      {/* Modern mesh gradient background */}
       <div className="absolute inset-0">
-        {/* Grid Pattern Overlay */}
-        <div className="absolute inset-0 bg-grid-pattern opacity-[0.01]"></div>
+        <div className="absolute inset-0 bg-[radial-gradient(at_40%_20%,hsla(201,96%,32%,0.1)_0px,transparent_50%),radial-gradient(at_80%_0%,hsla(186,100%,42%,0.1)_0px,transparent_50%),radial-gradient(at_0%_50%,hsla(199,89%,48%,0.1)_0px,transparent_50%)]"></div>
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:14px_24px]"></div>
       </div>
+
+      {/* Floating elements */}
+      <div className="absolute top-20 left-10 w-72 h-72 bg-primary/10 rounded-full blur-3xl animate-pulse"></div>
+      <div className="absolute bottom-20 right-10 w-96 h-96 bg-accent/10 rounded-full blur-3xl animate-pulse animation-delay-2000"></div>
       
-      {/* Mobile-First Content Container */}
-      <div className="relative z-10 px-4 py-8 sm:px-6 md:py-12 lg:py-20">
+      {/* Content */}
+      <div className="relative z-10 px-4 py-20 sm:px-6 md:py-24 lg:py-28 w-full">
         <div className="max-w-7xl mx-auto">
-          {/* Mobile-First Grid - Stacked on mobile, side-by-side on desktop */}
-          <div className="flex flex-col lg:grid lg:grid-cols-2 gap-8 lg:gap-12 xl:gap-16 lg:items-center">
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
             
-            {/* Left Column - Content (Shows first on mobile) */}
-            <div className="space-y-6 md:space-y-8">
-
-
-              {/* Main Headline - Mobile First Typography */}
-              <div className="space-y-4 text-center lg:text-left">
-                <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight text-gray-900 animate-fade-in">
-                  Need To Sell Your Property?
+            {/* Left Column - Content */}
+            <div className="space-y-8 animate-fade-in">
+              {/* Main Headline */}
+              <div className="space-y-4">
+                <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight">
+                  <span className="text-gradient">Sell Your Home</span>
+                  <br />
+                  <span className="text-gray-900">For Cash, Fast</span>
                 </h1>
                 
-                <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-600 max-w-md mx-auto lg:mx-0 lg:max-w-2xl animate-fade-in delay-200">
-                  We got you covered
+                <p className="text-lg sm:text-xl text-muted-foreground max-w-xl leading-relaxed">
+                  Get a fair cash offer within 24 hours. No fees, no repairs, no hassle. We make selling your home simple and stress-free.
                 </p>
               </div>
 
-              {/* Mobile-First Benefits Grid */}
-              <div className="grid grid-cols-2 gap-3 sm:gap-4 max-w-md mx-auto lg:mx-0 lg:max-w-lg animate-fade-in delay-400">
-                <div className="relative bg-gradient-to-br from-white to-cyan-50/30 p-4 sm:p-5 rounded-xl sm:rounded-2xl shadow-md border border-cyan-100/50">
-                  <div className="flex flex-col items-center lg:items-start space-y-2.5">
-                    <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-cyan-500 to-cyan-600 rounded-xl flex items-center justify-center shadow-lg">
-                      <DollarSign className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
+              {/* Benefits Grid */}
+              <div className="grid grid-cols-2 gap-4 max-w-lg animate-fade-in animation-delay-400">
+                <div className="group relative overflow-hidden bg-white/80 backdrop-blur-sm p-5 rounded-2xl border border-gray-100 hover:border-primary/20 transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
+                  <div className="absolute inset-0 bg-gradient-to-br from-primary/0 to-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <div className="relative space-y-2">
+                    <div className="w-10 h-10 bg-gradient-to-br from-primary to-primary/80 rounded-xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
+                      <DollarSign className="w-5 h-5 text-white" />
                     </div>
-                    <div className="text-center lg:text-left">
-                      <p className="text-sm sm:text-base font-bold text-gray-900">Fair</p>
-                      <p className="text-xs sm:text-sm text-gray-600 mt-0.5">Honest offers</p>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="relative bg-gradient-to-br from-white to-cyan-50/30 p-4 sm:p-5 rounded-xl sm:rounded-2xl shadow-md border border-cyan-100/50">
-                  <div className="flex flex-col items-center lg:items-start space-y-2.5">
-                    <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-cyan-500 to-cyan-600 rounded-xl flex items-center justify-center shadow-lg">
-                      <Clock className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
-                    </div>
-                    <div className="text-center lg:text-left">
-                      <p className="text-sm sm:text-base font-bold text-gray-900">Quick</p>
-                      <p className="text-xs sm:text-sm text-gray-600 mt-0.5">7-30 days</p>
+                    <div>
+                      <p className="font-bold text-gray-900">Fair Cash Offer</p>
+                      <p className="text-sm text-muted-foreground">Market-based pricing</p>
                     </div>
                   </div>
                 </div>
 
-                <div className="relative bg-gradient-to-br from-white to-cyan-50/30 p-4 sm:p-5 rounded-xl sm:rounded-2xl shadow-md border border-cyan-100/50">
-                  <div className="flex flex-col items-center lg:items-start space-y-2.5">
-                    <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-cyan-500 to-cyan-600 rounded-xl flex items-center justify-center shadow-lg">
-                      <CheckCircle className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
+                <div className="group relative overflow-hidden bg-white/80 backdrop-blur-sm p-5 rounded-2xl border border-gray-100 hover:border-accent/20 transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
+                  <div className="absolute inset-0 bg-gradient-to-br from-accent/0 to-accent/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <div className="relative space-y-2">
+                    <div className="w-10 h-10 bg-gradient-to-br from-accent to-accent/80 rounded-xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
+                      <Zap className="w-5 h-5 text-white" />
                     </div>
-                    <div className="text-center lg:text-left">
-                      <p className="text-sm sm:text-base font-bold text-gray-900">Direct Sale</p>
-                      <p className="text-xs sm:text-sm text-gray-600 mt-0.5">No realtor fees</p>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="relative bg-gradient-to-br from-white to-cyan-50/30 p-4 sm:p-5 rounded-xl sm:rounded-2xl shadow-md border border-cyan-100/50">
-                  <div className="flex flex-col items-center lg:items-start space-y-2.5">
-                    <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-cyan-500 to-cyan-600 rounded-xl flex items-center justify-center shadow-lg">
-                      <CheckCircle className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
-                    </div>
-                    <div className="text-center lg:text-left">
-                      <p className="text-sm sm:text-base font-bold text-gray-900">As Is</p>
-                      <p className="text-xs sm:text-sm text-gray-600 mt-0.5">No repairs needed</p>
+                    <div>
+                      <p className="font-bold text-gray-900">Quick Close</p>
+                      <p className="text-sm text-muted-foreground">7-30 days timeline</p>
                     </div>
                   </div>
                 </div>
 
-                
+                <div className="group relative overflow-hidden bg-white/80 backdrop-blur-sm p-5 rounded-2xl border border-gray-100 hover:border-success/20 transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
+                  <div className="absolute inset-0 bg-gradient-to-br from-success/0 to-success/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <div className="relative space-y-2">
+                    <div className="w-10 h-10 bg-gradient-to-br from-success to-success/80 rounded-xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
+                      <Shield className="w-5 h-5 text-white" />
+                    </div>
+                    <div>
+                      <p className="font-bold text-gray-900">No Fees</p>
+                      <p className="text-sm text-muted-foreground">Save on commissions</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="group relative overflow-hidden bg-white/80 backdrop-blur-sm p-5 rounded-2xl border border-gray-100 hover:border-trust/20 transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
+                  <div className="absolute inset-0 bg-gradient-to-br from-trust/0 to-trust/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <div className="relative space-y-2">
+                    <div className="w-10 h-10 bg-gradient-to-br from-trust to-trust/80 rounded-xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
+                      <CheckCircle className="w-5 h-5 text-white" />
+                    </div>
+                    <div>
+                      <p className="font-bold text-gray-900">As-Is Sale</p>
+                      <p className="text-sm text-muted-foreground">No repairs needed</p>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
             
-            {/* Right Column - Form (Shows second on mobile) */}
-            <div className="w-full max-w-md mx-auto lg:ml-auto animate-fade-in delay-200">
-              <Card className="border-0 shadow-xl bg-white">
+            {/* Right Column - Form */}
+            <div className="w-full max-w-md mx-auto lg:ml-auto animate-fade-in animation-delay-200">
+              <Card className="border-0 shadow-2xl bg-white/95 backdrop-blur-md overflow-hidden">
                 {/* Form Header */}
-                <div className="bg-gradient-to-r from-cyan-600 to-cyan-700 p-4 sm:p-6 rounded-t-xl">
-                  <h2 className="text-xl sm:text-2xl font-bold text-white text-center">
-                    Get Your Free Cash Offer
-                  </h2>
-                  <p className="text-sm sm:text-base text-cyan-100 text-center mt-1 sm:mt-2">
-                    No obligation • Advanced models • 24-hour email delivery
-                  </p>
+                <div className="bg-gradient-to-r from-primary via-primary to-accent p-6 sm:p-8 relative overflow-hidden">
+                  <div className="absolute inset-0 bg-[linear-gradient(45deg,transparent_30%,rgba(255,255,255,0.1)_50%,transparent_70%)] animate-shimmer"></div>
+                  <div className="relative">
+                    <h2 className="text-2xl sm:text-3xl font-bold text-white">
+                      Get Your Cash Offer
+                    </h2>
+                    <p className="text-white/90 mt-2">
+                      Free • No Obligation • 24hr Response
+                    </p>
+                    <div className="flex items-center gap-2 mt-4">
+                      <TrendingUp className="w-5 h-5 text-white/80" />
+                      <span className="text-sm text-white/80">Instant property valuation</span>
+                    </div>
+                  </div>
                 </div>
                 
-                <CardContent className="p-4 sm:p-6">
-                  <form onSubmit={handleSubmit} className="space-y-3 sm:space-y-4">
-                    {/* Name Fields - Responsive Grid */}
-                    <div className="grid grid-cols-2 gap-2 sm:gap-3">
-                      <div>
+                <CardContent className="p-6 sm:p-8">
+                  <form onSubmit={handleSubmit} className="space-y-4">
+                    {/* Name Fields */}
+                    <div className="grid grid-cols-2 gap-3">
+                      <div className="space-y-1">
                         <Label htmlFor="firstName" className="sr-only">First Name</Label>
                         <Input 
                           id="firstName" 
-                          placeholder="First Name*" 
+                          placeholder="First Name" 
                           required 
-                          className="h-10 sm:h-12 text-sm sm:text-base border-gray-200 focus:border-primary"
+                          className="h-11 border-gray-200 focus:border-primary focus:ring-primary/20 transition-all duration-300 rounded-xl"
                           value={formData.firstName}
                           onChange={handleInputChange}
                         />
                       </div>
-                      <div>
+                      <div className="space-y-1">
                         <Label htmlFor="lastName" className="sr-only">Last Name</Label>
                         <Input 
                           id="lastName" 
-                          placeholder="Last Name*" 
+                          placeholder="Last Name" 
                           required 
-                          className="h-10 sm:h-12 text-sm sm:text-base border-gray-200 focus:border-primary"
+                          className="h-11 border-gray-200 focus:border-primary focus:ring-primary/20 transition-all duration-300 rounded-xl"
                           value={formData.lastName}
                           onChange={handleInputChange}
                         />
@@ -161,40 +173,38 @@ export const HeroSection = () => {
                     </div>
                     
                     {/* Email */}
-                    <div>
+                    <div className="space-y-1">
                       <Label htmlFor="email" className="sr-only">Email</Label>
                       <Input 
                         id="email" 
                         type="email" 
-                        placeholder="Email Address*" 
+                        placeholder="Email Address" 
                         required 
-                        className="h-10 sm:h-12 text-sm sm:text-base border-gray-200 focus:border-primary"
+                        className="h-11 border-gray-200 focus:border-primary focus:ring-primary/20 transition-all duration-300 rounded-xl"
                         value={formData.email}
                         onChange={handleInputChange}
                       />
                     </div>
                     
-
-                    
                     {/* Property Address */}
-                    <div>
+                    <div className="space-y-1">
                       <Label htmlFor="address" className="sr-only">Property Address</Label>
                       <Input 
                         id="address" 
-                        placeholder="Property Address*" 
+                        placeholder="Property Address" 
                         required 
-                        className="h-10 sm:h-12 text-sm sm:text-base border-gray-200 focus:border-primary"
+                        className="h-11 border-gray-200 focus:border-primary focus:ring-primary/20 transition-all duration-300 rounded-xl"
                         value={formData.address}
                         onChange={handleInputChange}
                       />
                     </div>
                     
                     {/* Property Type */}
-                    <div>
+                    <div className="space-y-1">
                       <Label htmlFor="propertyType" className="sr-only">Property Type</Label>
                       <Select onValueChange={(value) => setFormData({...formData, propertyType: value})}>
-                        <SelectTrigger className="h-10 sm:h-12 text-sm sm:text-base border-gray-200 focus:border-primary">
-                          <SelectValue placeholder="Property Type*" />
+                        <SelectTrigger className="h-11 border-gray-200 focus:border-primary focus:ring-primary/20 transition-all duration-300 rounded-xl">
+                          <SelectValue placeholder="Property Type" />
                         </SelectTrigger>
                         <SelectContent>
                           <SelectItem value="single-family">Single Family Home</SelectItem>
@@ -208,11 +218,11 @@ export const HeroSection = () => {
                     </div>
                     
                     {/* Timeline */}
-                    <div>
+                    <div className="space-y-1">
                       <Label htmlFor="timeline" className="sr-only">Selling Timeline</Label>
                       <Select onValueChange={(value) => setFormData({...formData, timeline: value})}>
-                        <SelectTrigger className="h-10 sm:h-12 text-sm sm:text-base border-gray-200 focus:border-primary">
-                          <SelectValue placeholder="How soon do you need to sell?*" />
+                        <SelectTrigger className="h-11 border-gray-200 focus:border-primary focus:ring-primary/20 transition-all duration-300 rounded-xl">
+                          <SelectValue placeholder="How soon do you need to sell?" />
                         </SelectTrigger>
                         <SelectContent>
                           <SelectItem value="asap">ASAP</SelectItem>
@@ -224,55 +234,53 @@ export const HeroSection = () => {
                       </Select>
                     </div>
                     
-                    {/* Submit Button - Mobile Optimized */}
+                    {/* Submit Button */}
                     <Button 
                       type="submit" 
                       size="lg" 
-                      className="w-full h-12 sm:h-14 text-sm sm:text-lg font-semibold bg-gradient-to-r from-cyan-600 to-cyan-700 hover:from-cyan-700 hover:to-cyan-800 transition-all disabled:opacity-50 disabled:cursor-not-allowed shadow-md hover:shadow-lg text-white"
+                      className="w-full h-12 text-base font-semibold bg-gradient-to-r from-primary to-accent hover:from-primary hover:to-accent text-white shadow-lg hover:shadow-glow transition-all duration-300 rounded-xl group"
                       disabled={isSubmitting}
                     >
                       {isSubmitting ? (
                         <span className="flex items-center justify-center gap-2">
-                          <span className="w-4 h-4 sm:w-5 sm:h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></span>
+                          <span className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin"></span>
                           Processing...
                         </span>
                       ) : (
                         <span className="flex items-center justify-center gap-2">
-                          Get an Offer 
-                          <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5" />
+                          Get My Cash Offer
+                          <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
                         </span>
                       )}
                     </Button>
 
-                    {/* Trust Indicators - Mobile Responsive */}
-                    <div className="flex items-center justify-center gap-2 sm:gap-4 pt-3 sm:pt-4 border-t border-gray-100">
-                      <div className="flex items-center gap-1 text-xs sm:text-sm text-gray-600">
-                        <CheckCircle className="w-3 h-3 sm:w-4 sm:h-4 text-green-600" />
+                    {/* Trust Badges */}
+                    <div className="flex items-center justify-center gap-4 pt-4 border-t border-gray-100">
+                      <div className="flex items-center gap-1.5 text-sm text-muted-foreground">
+                        <CheckCircle className="w-4 h-4 text-success" />
                         <span>No fees</span>
                       </div>
-                      <div className="flex items-center gap-1 text-xs sm:text-sm text-gray-600">
-                        <CheckCircle className="w-3 h-3 sm:w-4 sm:h-4 text-green-600" />
-                        <span>No obligation</span>
-                      </div>
-                      <div className="flex items-center gap-1 text-xs sm:text-sm text-gray-600">
-                        <CheckCircle className="w-3 h-3 sm:w-4 sm:h-4 text-green-600" />
+                      <div className="flex items-center gap-1.5 text-sm text-muted-foreground">
+                        <Clock className="w-4 h-4 text-trust" />
                         <span>24hr reply</span>
+                      </div>
+                      <div className="flex items-center gap-1.5 text-sm text-muted-foreground">
+                        <Shield className="w-4 h-4 text-primary" />
+                        <span>Secure</span>
                       </div>
                     </div>
                     
-                    {/* Privacy Notice - Mobile Text Size */}
-                    <p className="text-xs text-gray-500 text-center px-2">
-                      Your information is secure and will never be shared. 
+                    {/* Privacy Notice */}
+                    <p className="text-xs text-center text-muted-foreground px-2">
+                      Your information is secure and will never be shared.
                       By submitting, you agree to our{' '}
-                      <a href="/privacy" className="text-cyan-700 hover:underline">
+                      <a href="/privacy" className="text-primary hover:underline">
                         Privacy Policy
                       </a>.
                     </p>
                   </form>
                 </CardContent>
               </Card>
-
-
             </div>
           </div>
         </div>
@@ -291,71 +299,37 @@ export const HeroSection = () => {
           }
         }
 
-        @keyframes blob {
+        @keyframes shimmer {
           0% {
-            transform: translate(0px, 0px) scale(1);
-          }
-          33% {
-            transform: translate(30px, -50px) scale(1.1);
-          }
-          66% {
-            transform: translate(-20px, 20px) scale(0.9);
+            transform: translateX(-100%);
           }
           100% {
-            transform: translate(0px, 0px) scale(1);
+            transform: translateX(100%);
           }
-        }
-
-        @keyframes pulse-slow {
-          0%, 100% {
-            opacity: 1;
-          }
-          50% {
-            opacity: 0.9;
-          }
-        }
-
-        .animate-blob {
-          animation: blob 10s infinite;
-        }
-
-        .animation-delay-2000 {
-          animation-delay: 2s;
-        }
-
-        .animation-delay-4000 {
-          animation-delay: 4s;
-        }
-
-        .animation-delay-6000 {
-          animation-delay: 6s;
         }
 
         .animate-fade-in {
           animation: fade-in 0.8s ease-out forwards;
         }
 
-        .delay-200 {
+        .animation-delay-200 {
           animation-delay: 200ms;
         }
 
-        .delay-400 {
+        .animation-delay-400 {
           animation-delay: 400ms;
         }
 
-        .delay-600 {
+        .animation-delay-600 {
           animation-delay: 600ms;
         }
 
-        .animate-pulse-slow {
-          animation: pulse-slow 3s ease-in-out infinite;
+        .animation-delay-2000 {
+          animation-delay: 2s;
         }
 
-        .bg-grid-pattern {
-          background-image: 
-            linear-gradient(rgba(0, 0, 0, 0.03) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(0, 0, 0, 0.03) 1px, transparent 1px);
-          background-size: 50px 50px;
+        .animate-shimmer {
+          animation: shimmer 3s ease-out infinite;
         }
       `}</style>
     </section>

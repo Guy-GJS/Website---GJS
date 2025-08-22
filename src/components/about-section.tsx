@@ -60,11 +60,11 @@ export const AboutSection = () => {
           {highlights.map((item, index) => (
             <Card
               key={index}
-              className="relative overflow-hidden border border-gray-200 hover:border-gray-300 bg-white shadow-sm hover:shadow-lg transition-all duration-300 group"
+              className="relative overflow-hidden border border-gray-200 hover:border-gray-300 bg-white shadow-sm hover:shadow-lg transition-all duration-300 group h-full min-h-[300px]"
            >
-              <CardContent className="p-6 sm:p-8 text-center space-y-4 relative">
+              <CardContent className="p-6 sm:p-8 text-center space-y-4 relative h-full flex flex-col">
                 <div className={`absolute inset-0 bg-gradient-to-br ${item.bgColor} opacity-0 group-hover:opacity-100 transition-opacity duration-500`}></div>
-                <div className="relative z-10">
+                <div className="relative z-10 flex-1 flex flex-col">
                   <div className="relative mb-6">
                     <div className={`inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br ${item.color} text-white shadow-lg group-hover:scale-110 transition-transform duration-300`}>
                       {item.icon}
@@ -76,8 +76,10 @@ export const AboutSection = () => {
                       {item.badge}
                     </Badge>
                   </div>
-                  <h3 className="text-xl font-semibold text-gray-900 mb-3">{item.title}</h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed">{item.description}</p>
+                  <div className="flex-1 flex flex-col">
+                    <h3 className="text-xl font-semibold text-gray-900 mb-3">{item.title}</h3>
+                    <p className="text-sm text-muted-foreground leading-relaxed flex-1">{item.description}</p>
+                  </div>
                 </div>
               </CardContent>
             </Card>
