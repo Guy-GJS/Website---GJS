@@ -25,6 +25,72 @@ All colors MUST be HSL.
     letter-spacing: -0.02em;
   }
   
+  /* Consistent placeholder styling for all form elements */
+  input::placeholder,
+  textarea::placeholder,
+  [data-radix-select-trigger] span[data-placeholder],
+  .select-trigger span[data-placeholder] {
+    font-family: 'Inter', system-ui, -apple-system, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif;
+    font-size: 0.875rem; /* 14px */
+    font-weight: 400;
+    line-height: 1.25rem; /* 20px */
+    color: hsl(215 16% 47%); /* muted-foreground color */
+    opacity: 1;
+  }
+  
+  /* Ensure consistent placeholder styling across different browsers */
+  input::-webkit-input-placeholder,
+  textarea::-webkit-input-placeholder {
+    font-family: 'Inter', system-ui, -apple-system, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif;
+    font-size: 0.875rem;
+    font-weight: 400;
+    line-height: 1.25rem;
+    color: hsl(215 16% 47%);
+    opacity: 1;
+  }
+  
+  input::-moz-placeholder,
+  textarea::-moz-placeholder {
+    font-family: 'Inter', system-ui, -apple-system, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif;
+    font-size: 0.875rem;
+    font-weight: 400;
+    line-height: 1.25rem;
+    color: hsl(215 16% 47%);
+    opacity: 1;
+  }
+  
+  input:-ms-input-placeholder,
+  textarea:-ms-input-placeholder {
+    font-family: 'Inter', system-ui, -apple-system, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif;
+    font-size: 0.875rem;
+    font-weight: 400;
+    line-height: 1.25rem;
+    color: hsl(215 16% 47%);
+    opacity: 1;
+  }
+  
+  /* Specific styling for SelectValue placeholders */
+  [data-radix-select-trigger] span[data-placeholder],
+  .select-trigger span[data-placeholder],
+  [data-placeholder] {
+    font-family: 'Inter', system-ui, -apple-system, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif !important;
+    font-size: 0.875rem !important;
+    font-weight: 400 !important;
+    line-height: 1.25rem !important;
+    color: hsl(215 16% 47%) !important;
+    opacity: 1 !important;
+  }
+  
+  /* Ensure SelectValue placeholders are visible and styled correctly */
+  .select-value[data-placeholder] {
+    font-family: 'Inter', system-ui, -apple-system, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif !important;
+    font-size: 0.875rem !important;
+    font-weight: 400 !important;
+    line-height: 1.25rem !important;
+    color: hsl(215 16% 47%) !important;
+    opacity: 1 !important;
+  }
+  
   :root {
     --background: 0 0% 100%;
     --foreground: 222 47% 11%;
@@ -201,6 +267,15 @@ All colors MUST be HSL.
   
   .text-gradient {
     @apply bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent;
+  }
+  
+  .placeholder-consistent {
+    font-family: 'Inter', system-ui, -apple-system, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif;
+    font-size: 0.875rem;
+    font-weight: 400;
+    line-height: 1.25rem;
+    color: hsl(215 16% 47%);
+    opacity: 1;
   }
   
   .animation-delay-200 {

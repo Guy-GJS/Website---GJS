@@ -19,14 +19,54 @@ export const HeroSection = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    console.log('Hero form submission started with data:', formData);
     setIsSubmitting(true);
-    
-    // Simulate form submission
-    setTimeout(() => {
-      setIsSubmitting(false);
+
+    try {
+      // Use environment variable or fallback to localhost:3000
+      const apiBase = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3000';
+      const url = `${apiBase}/api/leads`;
+      
+      console.log('Hero form - Environment check:', {
+        VITE_API_BASE_URL: import.meta.env.VITE_API_BASE_URL,
+        apiBase,
+        url
+      });
+      console.log('Hero form - Submitting lead to:', url);
+      console.log('Hero form - Form data:', formData);
+      
+      const res = await fetch(url, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(formData),
+        mode: 'cors',
+      });
+
+      console.log('Hero form - Response status:', res.status, res.statusText);
+      console.log('Hero form - Response headers:', Object.fromEntries(res.headers.entries()));
+
+      if (!res.ok) {
+        const errorData = await res.json().catch(() => ({}));
+        console.error('Hero form - API error response:', errorData);
+        throw new Error(errorData.message || `Failed to submit (HTTP ${res.status})`);
+      }
+
+      const result = await res.json();
+      console.log('Hero form - Lead submitted successfully:', result);
+
+      // Reset form on success
+      setFormData({ firstName: '', lastName: '', email: '', address: '', propertyType: '', timeline: '' });
       // You can add success notification here
-      console.log("Form submitted:", formData);
-    }, 2000);
+      console.log("Hero form - Form submitted successfully to API");
+    } catch (err) {
+      console.error('Hero form - Submission failed with error:', err);
+      console.error('Hero form - Error details:', err instanceof Error ? err.message : String(err));
+      // You can add error notification here
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -154,7 +194,7 @@ export const HeroSection = () => {
                           id="firstName" 
                           placeholder="First Name" 
                           required 
-                          className="h-11 border-gray-200 focus:border-primary focus:ring-primary/20 transition-all duration-300 rounded-xl"
+                          className="h-11 border-gray-200 focus:border-primary focus:ring-primary/20 transition-all duration-300 rounded-xl placeholder-consistent"
                           value={formData.firstName}
                           onChange={handleInputChange}
                         />
@@ -165,7 +205,7 @@ export const HeroSection = () => {
                           id="lastName" 
                           placeholder="Last Name" 
                           required 
-                          className="h-11 border-gray-200 focus:border-primary focus:ring-primary/20 transition-all duration-300 rounded-xl"
+                          className="h-11 border-gray-200 focus:border-primary focus:ring-primary/20 transition-all duration-300 rounded-xl placeholder-consistent"
                           value={formData.lastName}
                           onChange={handleInputChange}
                         />
@@ -180,7 +220,7 @@ export const HeroSection = () => {
                         type="email" 
                         placeholder="Email Address" 
                         required 
-                        className="h-11 border-gray-200 focus:border-primary focus:ring-primary/20 transition-all duration-300 rounded-xl"
+                        className="h-11 border-gray-200 focus:border-primary focus:ring-primary/20 transition-all duration-300 rounded-xl placeholder-consistent"
                         value={formData.email}
                         onChange={handleInputChange}
                       />
@@ -193,7 +233,7 @@ export const HeroSection = () => {
                         id="address" 
                         placeholder="Property Address" 
                         required 
-                        className="h-11 border-gray-200 focus:border-primary focus:ring-primary/20 transition-all duration-300 rounded-xl"
+                        className="h-11 border-gray-200 focus:border-primary focus:ring-primary/20 transition-all duration-300 rounded-xl placeholder-consistent"
                         value={formData.address}
                         onChange={handleInputChange}
                       />
@@ -204,7 +244,7 @@ export const HeroSection = () => {
                       <Label htmlFor="propertyType" className="sr-only">Property Type</Label>
                       <Select onValueChange={(value) => setFormData({...formData, propertyType: value})}>
                         <SelectTrigger className="h-11 border-gray-200 focus:border-primary focus:ring-primary/20 transition-all duration-300 rounded-xl">
-                          <SelectValue placeholder="Property Type" />
+                          <SelectValue placeholder="Property Type" className="placeholder-consistent" />
                         </SelectTrigger>
                         <SelectContent>
                           <SelectItem value="single-family">Single Family Home</SelectItem>
@@ -222,7 +262,7 @@ export const HeroSection = () => {
                       <Label htmlFor="timeline" className="sr-only">Selling Timeline</Label>
                       <Select onValueChange={(value) => setFormData({...formData, timeline: value})}>
                         <SelectTrigger className="h-11 border-gray-200 focus:border-primary focus:ring-primary/20 transition-all duration-300 rounded-xl">
-                          <SelectValue placeholder="How soon do you need to sell?" />
+                          <SelectValue placeholder="How soon do you need to sell?" className="placeholder-consistent" />
                         </SelectTrigger>
                         <SelectContent>
                           <SelectItem value="asap">ASAP</SelectItem>

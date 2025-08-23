@@ -8,6 +8,7 @@ import { MessageCircle, ArrowRight, CheckCircle, Clock, Shield, TrendingUp } fro
 
 export const ContactSection = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -19,20 +20,70 @@ export const ContactSection = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    console.log('Form submission started with data:', formData);
     setIsSubmitting(true);
-    
-    // Simulate form submission
-    setTimeout(() => {
+
+    try {
+      // Use environment variable or fallback to localhost:3000
+      const apiBase = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3000';
+      const url = `${apiBase}/api/leads`;
+      
+      console.log('Environment check:', {
+        VITE_API_BASE_URL: import.meta.env.VITE_API_BASE_URL,
+        apiBase,
+        url
+      });
+      console.log('Submitting lead to:', url);
+      console.log('Form data:', formData);
+      
+      const res = await fetch(url, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(formData),
+        mode: 'cors',
+      });
+
+      console.log('Response status:', res.status, res.statusText);
+      console.log('Response headers:', Object.fromEntries(res.headers.entries()));
+
+      if (!res.ok) {
+        const errorData = await res.json().catch(() => ({}));
+        console.error('API error response:', errorData);
+        throw new Error(errorData.message || `Failed to submit (HTTP ${res.status})`);
+      }
+
+      const result = await res.json();
+      console.log('Lead submitted successfully:', result);
+
+      // Reset form on success
+      setFormData({ firstName: '', lastName: '', email: '', address: '', propertyType: '', timeline: '' });
+      setSubmitStatus('success');
+      // Reset success status after 3 seconds
+      setTimeout(() => setSubmitStatus('idle'), 3000);
+    } catch (err) {
+      console.error('Submission failed with error:', err);
+      console.error('Error details:', err instanceof Error ? err.message : String(err));
+      setSubmitStatus('error');
+      // Reset error status after 5 seconds
+      setTimeout(() => setSubmitStatus('idle'), 5000);
+    } finally {
       setIsSubmitting(false);
-      // You can add success notification here
-      console.log("Form submitted:", formData);
-    }, 2000);
+    }
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({
       ...formData,
       [e.target.id]: e.target.value
+    });
+  };
+
+  const handleSelectChange = (id: string, value: string) => {
+    setFormData({
+      ...formData,
+      [id]: value
     });
   };
 
@@ -132,11 +183,12 @@ export const ContactSection = () => {
                 {/* Property Type */}
                 <div className="space-y-1">
                   <Label htmlFor="propertyType" className="sr-only">Property Type</Label>
-                  <Select onValueChange={(value) => setFormData({...formData, propertyType: value})}>
+                  <Select onValueChange={(value) => handleSelectChange('propertyType', value)} value={formData.propertyType} required>
                     <SelectTrigger className="h-11 border-gray-200 focus:border-primary focus:ring-primary/20 transition-all duration-300 rounded-xl">
                       <SelectValue placeholder="Property Type" />
                     </SelectTrigger>
                     <SelectContent>
+                      <SelectItem value="" disabled>Select Property Type</SelectItem>
                       <SelectItem value="single-family">Single Family Home</SelectItem>
                       <SelectItem value="townhouse">Townhouse</SelectItem>
                       <SelectItem value="condo">Condominium</SelectItem>
@@ -150,11 +202,12 @@ export const ContactSection = () => {
                 {/* Timeline */}
                 <div className="space-y-1">
                   <Label htmlFor="timeline" className="sr-only">Selling Timeline</Label>
-                  <Select onValueChange={(value) => setFormData({...formData, timeline: value})}>
+                  <Select onValueChange={(value) => handleSelectChange('timeline', value)} value={formData.timeline} required>
                     <SelectTrigger className="h-11 border-gray-200 focus:border-primary focus:ring-primary/20 transition-all duration-300 rounded-xl">
                       <SelectValue placeholder="How soon do you need to sell?" />
                     </SelectTrigger>
                     <SelectContent>
+                      <SelectItem value="" disabled>Select Timeline</SelectItem>
                       <SelectItem value="asap">ASAP</SelectItem>
                       <SelectItem value="30-days">Within 30 days</SelectItem>
                       <SelectItem value="60-days">Within 60 days</SelectItem>
@@ -175,6 +228,16 @@ export const ContactSection = () => {
                     <span className="flex items-center justify-center gap-2">
                       <span className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin"></span>
                       Processing...
+                    </span>
+                  ) : submitStatus === 'success' ? (
+                    <span className="flex items-center justify-center gap-2">
+                      <CheckCircle className="w-4 h-4" />
+                      Submitted Successfully!
+                    </span>
+                  ) : submitStatus === 'error' ? (
+                    <span className="flex items-center justify-center gap-2">
+                      Try Again
+                      <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
                     </span>
                   ) : (
                     <span className="flex items-center justify-center gap-2">
