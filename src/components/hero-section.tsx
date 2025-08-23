@@ -174,7 +174,7 @@ export const HeroSection = () => {
                     <h2 className="text-2xl sm:text-3xl font-bold text-white">
                       Get Your Cash Offer
                     </h2>
-                    <p className="text-white/90 mt-2">
+                    <p className="text-white/90 mt-2 whitespace-nowrap">
                       Free • No Obligation • 24hr Response
                     </p>
                     <div className="flex items-center gap-2 mt-4">
