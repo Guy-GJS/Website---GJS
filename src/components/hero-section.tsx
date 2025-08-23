@@ -23,8 +23,8 @@ export const HeroSection = () => {
     setIsSubmitting(true);
 
     try {
-      // Use environment variable or fallback to localhost:3000
-      const apiBase = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3000';
+      // Use environment variable or fallback to production backend
+      const apiBase = import.meta.env.VITE_API_BASE_URL || 'https://platform-lovat-ten.vercel.app';
       const url = `${apiBase}/api/leads`;
       
       console.log('Hero form - Environment check:', {
