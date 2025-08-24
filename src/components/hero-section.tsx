@@ -18,61 +18,25 @@ export const HeroSection = () => {
     timeline: ""
   });
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    
-    // Get values directly from form elements - bypass React state entirely
-    const form = e.target as HTMLFormElement;
-    const formElements = form.elements as any;
-    
-    // Read all values directly from DOM
-    const firstName = formElements.firstName?.value || '';
-    const lastName = formElements.lastName?.value || '';
-    const email = formElements.email?.value || '';
-    const address = formElements.address?.value || '';
-    
-    console.log('Hero form - DOM values:', { firstName, lastName, email, address });
-    console.log('Hero form - React state:', formData);
-    
-    // Simple validation using DOM values
-    console.log('Hero form - Validation check:', {
-      firstName: firstName,
-      firstNameTrimmed: firstName.trim(),
-      firstNameLength: firstName.length,
-      lastName: lastName,
-      lastNameTrimmed: lastName.trim(),
-      lastNameLength: lastName.length,
-      email: email,
-      emailTrimmed: email.trim(),
-      emailLength: email.length,
-      address: address,
-      addressTrimmed: address.trim(),
-      addressLength: address.length
-    });
-    
+    const form = e.currentTarget;
+    // Use FormData + name attributes for robust mobile compatibility
+    const fd = new FormData(form);
+    const firstName = (fd.get('firstName') as string) || '';
+    const lastName = (fd.get('lastName') as string) || '';
+    const email = (fd.get('email') as string) || '';
+    const address = (fd.get('address') as string) || '';
+    console.log('Hero form - FormData values:', { firstName, lastName, email, address });
+    console.log('Hero form - React state (may differ):', formData);
+
     if (!firstName.trim() || !lastName.trim() || !email.trim() || !address.trim()) {
-      console.error('Hero form - Validation failed using DOM values');
-      
-      // Show exactly which fields are empty
-      const emptyFields = [];
-      if (!firstName.trim()) emptyFields.push('firstName');
-      if (!lastName.trim()) emptyFields.push('lastName');
-      if (!email.trim()) emptyFields.push('email');
-      if (!address.trim()) emptyFields.push('address');
-      
-      console.error('Empty fields:', emptyFields);
-      
-      // Show alert on mobile with specific field info
-      if (window.innerWidth <= 768) {
-        alert(`Validation failed! Empty fields: ${emptyFields.join(', ')}\n\nDOM values:\nfirstName: "${firstName}"\nlastName: "${lastName}"\nemail: "${email}"\naddress: "${address}"`);
-      }
-      
+      console.error('Hero form - Validation failed using FormData values');
       setSubmitStatus('error');
       setTimeout(() => setSubmitStatus('idle'), 5000);
       return;
     }
-    
-    // Create submission data from DOM values
+
     const submissionData = {
       firstName: firstName.trim(),
       lastName: lastName.trim(),
@@ -264,6 +228,7 @@ export const HeroSection = () => {
                         <Label htmlFor="firstName" className="sr-only">First Name</Label>
                         <Input 
                           id="firstName" 
+                          name="firstName"
                           placeholder="First Name" 
                           className="h-11 border-gray-200 focus:border-primary focus:ring-primary/20 transition-all duration-300 rounded-xl placeholder-consistent"
                           value={formData.firstName}
@@ -274,6 +239,7 @@ export const HeroSection = () => {
                         <Label htmlFor="lastName" className="sr-only">Last Name</Label>
                         <Input 
                           id="lastName" 
+                          name="lastName"
                           placeholder="Last Name" 
                           className="h-11 border-gray-200 focus:border-primary focus:ring-primary/20 transition-all duration-300 rounded-xl placeholder-consistent"
                           value={formData.lastName}
@@ -287,6 +253,7 @@ export const HeroSection = () => {
                       <Label htmlFor="email" className="sr-only">Email</Label>
                       <Input 
                         id="email" 
+                        name="email"
                         type="email" 
                         placeholder="Email Address" 
                         className="h-11 border-gray-200 focus:border-primary focus:ring-primary/20 transition-all duration-300 rounded-xl placeholder-consistent"
@@ -300,6 +267,7 @@ export const HeroSection = () => {
                       <Label htmlFor="address" className="sr-only">Property Address</Label>
                       <Input 
                         id="address" 
+                        name="address"
                         placeholder="Property Address" 
                         className="h-11 border-gray-200 focus:border-primary focus:ring-primary/20 transition-all duration-300 rounded-xl placeholder-consistent"
                         value={formData.address}
