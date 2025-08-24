@@ -21,6 +21,22 @@ export const ContactSection = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     console.log('Form submission started with data:', formData);
+    
+    // Validate required fields before submission
+    if (!formData.firstName || !formData.lastName || !formData.email || !formData.address || !formData.propertyType || !formData.timeline) {
+      console.error('Missing required fields:', {
+        firstName: !formData.firstName,
+        lastName: !formData.lastName,
+        email: !formData.email,
+        address: !formData.address,
+        propertyType: !formData.propertyType,
+        timeline: !formData.timeline
+      });
+      setSubmitStatus('error');
+      setTimeout(() => setSubmitStatus('idle'), 5000);
+      return;
+    }
+    
     setIsSubmitting(true);
 
     try {
@@ -183,7 +199,7 @@ export const ContactSection = () => {
                 {/* Property Type */}
                 <div className="space-y-1">
                   <Label htmlFor="propertyType" className="sr-only">Property Type</Label>
-                  <Select onValueChange={(value) => handleSelectChange('propertyType', value)} value={formData.propertyType} required>
+                  <Select onValueChange={(value) => handleSelectChange('propertyType', value)} value={formData.propertyType}>
                     <SelectTrigger className="h-11 border-gray-200 focus:border-primary focus:ring-primary/20 transition-all duration-300 rounded-xl">
                       <SelectValue placeholder="Property Type" />
                     </SelectTrigger>
@@ -202,7 +218,7 @@ export const ContactSection = () => {
                 {/* Timeline */}
                 <div className="space-y-1">
                   <Label htmlFor="timeline" className="sr-only">Selling Timeline</Label>
-                  <Select onValueChange={(value) => handleSelectChange('timeline', value)} value={formData.timeline} required>
+                  <Select onValueChange={(value) => handleSelectChange('timeline', value)} value={formData.timeline}>
                     <SelectTrigger className="h-11 border-gray-200 focus:border-primary focus:ring-primary/20 transition-all duration-300 rounded-xl">
                       <SelectValue placeholder="How soon do you need to sell?" />
                     </SelectTrigger>
@@ -236,7 +252,7 @@ export const ContactSection = () => {
                     </span>
                   ) : submitStatus === 'error' ? (
                     <span className="flex items-center justify-center gap-2">
-                      Try Again
+                      Please Fill All Fields
                       <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
                     </span>
                   ) : (

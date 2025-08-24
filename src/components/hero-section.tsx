@@ -8,6 +8,7 @@ import { ArrowRight, CheckCircle, Clock, DollarSign, Sparkles, TrendingUp, Shiel
 
 export const HeroSection = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -20,6 +21,20 @@ export const HeroSection = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     console.log('Hero form submission started with data:', formData);
+    
+    // Validate required fields before submission
+    if (!formData.firstName || !formData.lastName || !formData.email || !formData.address) {
+      console.error('Hero form - Missing required fields:', {
+        firstName: !formData.firstName,
+        lastName: !formData.lastName,
+        email: !formData.email,
+        address: !formData.address
+      });
+      setSubmitStatus('error');
+      setTimeout(() => setSubmitStatus('idle'), 5000);
+      return;
+    }
+    
     setIsSubmitting(true);
 
     try {
@@ -58,12 +73,14 @@ export const HeroSection = () => {
 
       // Reset form on success
       setFormData({ firstName: '', lastName: '', email: '', address: '', propertyType: '', timeline: '' });
-      // You can add success notification here
+      setSubmitStatus('success');
+      setTimeout(() => setSubmitStatus('idle'), 3000);
       console.log("Hero form - Form submitted successfully to API");
     } catch (err) {
       console.error('Hero form - Submission failed with error:', err);
       console.error('Hero form - Error details:', err instanceof Error ? err.message : String(err));
-      // You can add error notification here
+      setSubmitStatus('error');
+      setTimeout(() => setSubmitStatus('idle'), 5000);
     } finally {
       setIsSubmitting(false);
     }
@@ -285,6 +302,16 @@ export const HeroSection = () => {
                         <span className="flex items-center justify-center gap-2">
                           <span className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin"></span>
                           Processing...
+                        </span>
+                      ) : submitStatus === 'success' ? (
+                        <span className="flex items-center justify-center gap-2">
+                          <CheckCircle className="w-4 h-4" />
+                          Submitted Successfully!
+                        </span>
+                      ) : submitStatus === 'error' ? (
+                        <span className="flex items-center justify-center gap-2">
+                          Please Fill All Fields
+                          <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
                         </span>
                       ) : (
                         <span className="flex items-center justify-center gap-2">
