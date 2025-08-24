@@ -84,7 +84,7 @@ const Navigation = () => {
             {/* Modern CTA Button */}
             <div className="flex items-center ml-4">
               <Button 
-                onClick={() => scrollToSection("#cta")}
+                onClick={() => scrollToSection("#hero-form")}
                 className="relative overflow-hidden bg-gradient-to-r from-primary to-accent hover:from-primary hover:to-accent text-white shadow-lg hover:shadow-glow transition-all duration-300 text-sm px-6 py-2 rounded-full font-semibold group"
               >
                 <span className="relative z-10 flex items-center gap-2">
@@ -147,7 +147,7 @@ const Navigation = () => {
                   <div className="flex flex-col space-y-3 pt-6 border-t border-border/20">
                     <Button 
                       onClick={() => {
-                        scrollToSection("#cta");
+                        scrollToSection("#hero-form");
                         setIsOpen(false);
                       }} 
                       className="w-full bg-gradient-to-r from-primary to-accent hover:from-primary hover:to-accent text-white shadow-lg hover:shadow-glow transition-all duration-300 rounded-full font-semibold group"

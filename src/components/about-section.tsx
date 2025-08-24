@@ -92,7 +92,7 @@ export const AboutSection = () => {
             size="lg"
             className="h-14 px-8 text-lg font-semibold bg-gradient-to-r from-cyan-600 to-cyan-700 hover:from-cyan-700 hover:to-cyan-800 text-white shadow-lg hover:shadow-xl transition-all duration-300"
             onClick={() => {
-              document.getElementById('cta')?.scrollIntoView({ behavior: 'smooth' });
+              document.getElementById('hero-form')?.scrollIntoView({ behavior: 'smooth' });
             }}
           >
             Get Your Offer

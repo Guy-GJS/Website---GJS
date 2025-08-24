@@ -239,7 +239,7 @@ export const HowItWorksSection = () => {
               size="lg"
               className="h-14 px-10 text-lg font-semibold bg-gradient-to-r from-primary to-accent hover:from-primary hover:to-accent text-white shadow-lg hover:shadow-glow transition-all duration-300 rounded-full group"
               onClick={() => {
-                document.getElementById('cta')?.scrollIntoView({ behavior: 'smooth' });
+                document.getElementById('hero-form')?.scrollIntoView({ behavior: 'smooth' });
               }}
             >
               <span className="flex items-center gap-2">

@@ -86,7 +86,7 @@ export const HeroSection = () => {
       // Reset form on success
       setFormData({ firstName: '', lastName: '', email: '', address: '', propertyType: '', timeline: '' });
       setSubmitStatus('success');
-      setTimeout(() => setSubmitStatus('idle'), 3000);
+      // Keep thank you message visible (don't auto-reset)
       console.log("Hero form - Form submitted successfully to API");
     } catch (err) {
       console.error('Hero form - Submission failed with error:', err);
@@ -202,7 +202,7 @@ export const HeroSection = () => {
             </div>
             
             {/* Right Column - Form */}
-            <div className="w-full max-w-md mx-auto lg:ml-auto animate-fade-in animation-delay-200">
+            <div id="hero-form" className="w-full max-w-md mx-auto lg:ml-auto animate-fade-in animation-delay-200">
               <Card className="border-0 shadow-2xl bg-white/95 backdrop-blur-md overflow-hidden">
                 {/* Form Header */}
                 <div className="bg-gradient-to-r from-primary via-primary to-accent p-6 sm:p-8 relative overflow-hidden">
@@ -222,7 +222,35 @@ export const HeroSection = () => {
                 </div>
                 
                 <CardContent className="p-6 sm:p-8">
-                  <form onSubmit={handleSubmit} className="space-y-4">
+                  {submitStatus === 'success' ? (
+                    // Thank You Message
+                    <div className="text-center py-8 space-y-6">
+                      <div className="w-16 h-16 bg-gradient-to-br from-success to-success/80 rounded-full flex items-center justify-center mx-auto shadow-lg">
+                        <CheckCircle className="w-8 h-8 text-white" />
+                      </div>
+                      <div className="space-y-3">
+                        <h3 className="text-2xl font-bold text-gray-900">Thank You!</h3>
+                        <p className="text-lg text-muted-foreground">
+                          We've received your information and will contact you soon with a cash offer for your property.
+                        </p>
+                        <p className="text-sm text-muted-foreground">
+                          Expect to hear from us within 24 hours.
+                        </p>
+                      </div>
+                      <div className="flex items-center justify-center gap-4 pt-4 border-t border-gray-100">
+                        <div className="flex items-center gap-1.5 text-sm text-success">
+                          <CheckCircle className="w-4 h-4" />
+                          <span>No obligations</span>
+                        </div>
+                        <div className="flex items-center gap-1.5 text-sm text-success">
+                          <Clock className="w-4 h-4" />
+                          <span>Quick response</span>
+                        </div>
+                      </div>
+                    </div>
+                  ) : (
+                    // Form
+                    <form onSubmit={handleSubmit} className="space-y-4">
                     {/* Name Fields */}
                     <div className="grid grid-cols-2 gap-3">
                       <div className="space-y-1">
@@ -311,32 +339,7 @@ export const HeroSection = () => {
                       </Select>
                     </div>
                     
-                    {/* Debug Button - Remove after testing */}
-                    <Button 
-                      type="button" 
-                      size="sm" 
-                      className="w-full h-10 text-sm font-medium bg-gray-500 hover:bg-gray-600 text-white rounded-xl mb-2"
-                      onClick={() => {
-                        const form = document.querySelector('form');
-                        const formElements = form?.elements as any;
-                        console.log('Debug - Form elements:', formElements);
-                        console.log('Debug - React state:', formData);
-                        console.log('Debug - DOM values:', {
-                          firstName: formElements?.firstName?.value,
-                          lastName: formElements?.lastName?.value,
-                          email: formElements?.email?.value,
-                          address: formElements?.address?.value
-                        });
-                        alert(`React State: ${JSON.stringify(formData, null, 2)}\n\nDOM Values: ${JSON.stringify({
-                          firstName: formElements?.firstName?.value,
-                          lastName: formElements?.lastName?.value,
-                          email: formElements?.email?.value,
-                          address: formElements?.address?.value
-                        }, null, 2)}`);
-                      }}
-                    >
-                      Debug Form State
-                    </Button>
+
                     
                     {/* Submit Button */}
                     <Button 
@@ -393,6 +396,7 @@ export const HeroSection = () => {
                       </a>.
                     </p>
                   </form>
+                  )}
                 </CardContent>
               </Card>
             </div>
