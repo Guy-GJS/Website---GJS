@@ -49,13 +49,14 @@ export const ContactSection = () => {
     setIsSubmitting(true);
 
     try {
-      // Prefer same-origin proxy to avoid CORS; allow override via env
-      const url = import.meta.env.VITE_API_BASE_URL
+      // Prefer same-origin proxy to avoid CORS; allow override via env only in dev
+      const url = (!import.meta.env.PROD && import.meta.env.VITE_API_BASE_URL)
         ? `${import.meta.env.VITE_API_BASE_URL}/api/leads`
-        : '/api/leads';
+        : '/api/form-submit';
       
       console.log('Environment check:', {
         VITE_API_BASE_URL: import.meta.env.VITE_API_BASE_URL,
+        PROD: import.meta.env.PROD,
         url
       });
       console.log('Submitting lead to:', url);

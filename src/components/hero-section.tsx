@@ -49,13 +49,14 @@ export const HeroSection = () => {
     setIsSubmitting(true);
 
     try {
-      // Prefer same-origin proxy to avoid CORS; allow override via env
-      const url = import.meta.env.VITE_API_BASE_URL
+      // Prefer same-origin proxy to avoid CORS; allow override via env only in dev
+      const url = (!import.meta.env.PROD && import.meta.env.VITE_API_BASE_URL)
         ? `${import.meta.env.VITE_API_BASE_URL}/api/leads`
-        : '/api/leads';
+        : '/api/form-submit';
       
       console.log('Hero form - Environment check:', {
         VITE_API_BASE_URL: import.meta.env.VITE_API_BASE_URL,
+        PROD: import.meta.env.PROD,
         url
       });
       console.log('Hero form - Submitting lead to:', url);
