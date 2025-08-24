@@ -22,16 +22,24 @@ export const ContactSection = () => {
     e.preventDefault();
     console.log('Form submission started with data:', formData);
     
-    // Validate required fields before submission
-    if (!formData.firstName || !formData.lastName || !formData.email || !formData.address || !formData.propertyType || !formData.timeline) {
-      console.error('Missing required fields:', {
-        firstName: !formData.firstName,
-        lastName: !formData.lastName,
-        email: !formData.email,
-        address: !formData.address,
-        propertyType: !formData.propertyType,
-        timeline: !formData.timeline
-      });
+    // Validate required fields before submission (only validate essential fields)
+    const requiredFields = {
+      firstName: formData.firstName?.trim(),
+      lastName: formData.lastName?.trim(),
+      email: formData.email?.trim(),
+      address: formData.address?.trim()
+    };
+    
+    const missingFields = Object.entries(requiredFields).filter(([_, value]) => !value);
+    
+    console.log('Form validation check:', {
+      formData,
+      requiredFields,
+      missingFields
+    });
+    
+    if (missingFields.length > 0) {
+      console.error('Missing required fields:', missingFields.map(([field]) => field));
       setSubmitStatus('error');
       setTimeout(() => setSubmitStatus('idle'), 5000);
       return;
@@ -97,6 +105,7 @@ export const ContactSection = () => {
   };
 
   const handleSelectChange = (id: string, value: string) => {
+    console.log('Select change:', { id, value, currentFormData: formData });
     setFormData({
       ...formData,
       [id]: value

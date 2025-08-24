@@ -23,13 +23,23 @@ export const HeroSection = () => {
     console.log('Hero form submission started with data:', formData);
     
     // Validate required fields before submission
-    if (!formData.firstName || !formData.lastName || !formData.email || !formData.address) {
-      console.error('Hero form - Missing required fields:', {
-        firstName: !formData.firstName,
-        lastName: !formData.lastName,
-        email: !formData.email,
-        address: !formData.address
-      });
+    const requiredFields = {
+      firstName: formData.firstName?.trim(),
+      lastName: formData.lastName?.trim(),
+      email: formData.email?.trim(),
+      address: formData.address?.trim()
+    };
+    
+    const missingFields = Object.entries(requiredFields).filter(([_, value]) => !value);
+    
+    console.log('Hero form - Form validation check:', {
+      formData,
+      requiredFields,
+      missingFields
+    });
+    
+    if (missingFields.length > 0) {
+      console.error('Hero form - Missing required fields:', missingFields.map(([field]) => field));
       setSubmitStatus('error');
       setTimeout(() => setSubmitStatus('idle'), 5000);
       return;
@@ -90,6 +100,14 @@ export const HeroSection = () => {
     setFormData({
       ...formData,
       [e.target.id]: e.target.value
+    });
+  };
+
+  const handleSelectChange = (id: string, value: string) => {
+    console.log('Hero form - Select change:', { id, value, currentFormData: formData });
+    setFormData({
+      ...formData,
+      [id]: value
     });
   };
 
@@ -259,7 +277,7 @@ export const HeroSection = () => {
                     {/* Property Type */}
                     <div className="space-y-1">
                       <Label htmlFor="propertyType" className="sr-only">Property Type</Label>
-                      <Select onValueChange={(value) => setFormData({...formData, propertyType: value})}>
+                      <Select onValueChange={(value) => handleSelectChange('propertyType', value)} value={formData.propertyType}>
                         <SelectTrigger className="h-11 border-gray-200 focus:border-primary focus:ring-primary/20 transition-all duration-300 rounded-xl">
                           <SelectValue placeholder="Property Type" className="placeholder-consistent" />
                         </SelectTrigger>
@@ -277,7 +295,7 @@ export const HeroSection = () => {
                     {/* Timeline */}
                     <div className="space-y-1">
                       <Label htmlFor="timeline" className="sr-only">Selling Timeline</Label>
-                      <Select onValueChange={(value) => setFormData({...formData, timeline: value})}>
+                      <Select onValueChange={(value) => handleSelectChange('timeline', value)} value={formData.timeline}>
                         <SelectTrigger className="h-11 border-gray-200 focus:border-primary focus:ring-primary/20 transition-all duration-300 rounded-xl">
                           <SelectValue placeholder="How soon do you need to sell?" className="placeholder-consistent" />
                         </SelectTrigger>
