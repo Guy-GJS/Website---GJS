@@ -22,24 +22,35 @@ export const ContactSection = () => {
     e.preventDefault();
     console.log('Form submission started with data:', formData);
     
-    // Validate required fields before submission (only validate essential fields)
-    const requiredFields = {
-      firstName: formData.firstName?.trim(),
-      lastName: formData.lastName?.trim(),
-      email: formData.email?.trim(),
-      address: formData.address?.trim()
-    };
-    
-    const missingFields = Object.entries(requiredFields).filter(([_, value]) => !value);
-    
-    console.log('Form validation check:', {
+    // Log all form data for debugging
+    console.log('Contact form - Debug info:', {
       formData,
-      requiredFields,
-      missingFields
+      firstName: formData.firstName,
+      firstNameLength: formData.firstName?.length,
+      lastName: formData.lastName,
+      lastNameLength: formData.lastName?.length,
+      email: formData.email,
+      emailLength: formData.email?.length,
+      address: formData.address,
+      addressLength: formData.address?.length,
+      propertyType: formData.propertyType,
+      timeline: formData.timeline
     });
     
-    if (missingFields.length > 0) {
-      console.error('Missing required fields:', missingFields.map(([field]) => field));
+    // Only validate if fields are truly empty (not just whitespace)
+    if (!formData.firstName?.trim() || !formData.lastName?.trim() || !formData.email?.trim() || !formData.address?.trim()) {
+      console.error('Contact form - Validation failed. Empty fields:', {
+        firstName: !formData.firstName?.trim(),
+        lastName: !formData.lastName?.trim(),
+        email: !formData.email?.trim(),
+        address: !formData.address?.trim()
+      });
+      
+      // Show alert on mobile for better debugging
+      if (window.innerWidth <= 768) {
+        alert(`Please fill all required fields:\n${!formData.firstName?.trim() ? '- First Name\n' : ''}${!formData.lastName?.trim() ? '- Last Name\n' : ''}${!formData.email?.trim() ? '- Email\n' : ''}${!formData.address?.trim() ? '- Address' : ''}`);
+      }
+      
       setSubmitStatus('error');
       setTimeout(() => setSubmitStatus('idle'), 5000);
       return;
@@ -159,7 +170,6 @@ export const ContactSection = () => {
                     <Input 
                       id="firstName" 
                       placeholder="First Name" 
-                      required 
                       className="h-11 border-gray-200 focus:border-primary focus:ring-primary/20 transition-all duration-300 rounded-xl"
                       value={formData.firstName}
                       onChange={handleInputChange}
@@ -170,7 +180,6 @@ export const ContactSection = () => {
                     <Input 
                       id="lastName" 
                       placeholder="Last Name" 
-                      required 
                       className="h-11 border-gray-200 focus:border-primary focus:ring-primary/20 transition-all duration-300 rounded-xl"
                       value={formData.lastName}
                       onChange={handleInputChange}
@@ -185,7 +194,6 @@ export const ContactSection = () => {
                     id="email" 
                     type="email" 
                     placeholder="Email Address" 
-                    required 
                     className="h-11 border-gray-200 focus:border-primary focus:ring-primary/20 transition-all duration-300 rounded-xl"
                     value={formData.email}
                     onChange={handleInputChange}
@@ -198,7 +206,6 @@ export const ContactSection = () => {
                   <Input 
                     id="address" 
                     placeholder="Property Address" 
-                    required 
                     className="h-11 border-gray-200 focus:border-primary focus:ring-primary/20 transition-all duration-300 rounded-xl"
                     value={formData.address}
                     onChange={handleInputChange}
