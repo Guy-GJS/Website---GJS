@@ -35,8 +35,38 @@ export const HeroSection = () => {
     console.log('Hero form - React state:', formData);
     
     // Simple validation using DOM values
+    console.log('Hero form - Validation check:', {
+      firstName: firstName,
+      firstNameTrimmed: firstName.trim(),
+      firstNameLength: firstName.length,
+      lastName: lastName,
+      lastNameTrimmed: lastName.trim(),
+      lastNameLength: lastName.length,
+      email: email,
+      emailTrimmed: email.trim(),
+      emailLength: email.length,
+      address: address,
+      addressTrimmed: address.trim(),
+      addressLength: address.length
+    });
+    
     if (!firstName.trim() || !lastName.trim() || !email.trim() || !address.trim()) {
       console.error('Hero form - Validation failed using DOM values');
+      
+      // Show exactly which fields are empty
+      const emptyFields = [];
+      if (!firstName.trim()) emptyFields.push('firstName');
+      if (!lastName.trim()) emptyFields.push('lastName');
+      if (!email.trim()) emptyFields.push('email');
+      if (!address.trim()) emptyFields.push('address');
+      
+      console.error('Empty fields:', emptyFields);
+      
+      // Show alert on mobile with specific field info
+      if (window.innerWidth <= 768) {
+        alert(`Validation failed! Empty fields: ${emptyFields.join(', ')}\n\nDOM values:\nfirstName: "${firstName}"\nlastName: "${lastName}"\nemail: "${email}"\naddress: "${address}"`);
+      }
+      
       setSubmitStatus('error');
       setTimeout(() => setSubmitStatus('idle'), 5000);
       return;
