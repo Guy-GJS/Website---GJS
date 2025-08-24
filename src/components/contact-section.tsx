@@ -49,13 +49,13 @@ export const ContactSection = () => {
     setIsSubmitting(true);
 
     try {
-      // Use environment variable or fallback to production backend
-      const apiBase = import.meta.env.VITE_API_BASE_URL || 'https://platform-lovat-ten.vercel.app';
-      const url = `${apiBase}/api/leads`;
+      // Prefer same-origin proxy to avoid CORS; allow override via env
+      const url = import.meta.env.VITE_API_BASE_URL
+        ? `${import.meta.env.VITE_API_BASE_URL}/api/leads`
+        : '/api/leads';
       
       console.log('Environment check:', {
         VITE_API_BASE_URL: import.meta.env.VITE_API_BASE_URL,
-        apiBase,
         url
       });
       console.log('Submitting lead to:', url);

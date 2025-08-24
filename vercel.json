@@ -1,6 +1,10 @@
 {
   "rewrites": [
     {
+      "source": "/api/leads",
+      "destination": "https://platform-lovat-ten.vercel.app/api/leads"
+    },
+    {
       "source": "/(.*)",
       "destination": "/index.html"
     }
