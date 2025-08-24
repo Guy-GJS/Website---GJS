@@ -21,43 +21,35 @@ export const ContactSection = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    // Get values directly from form elements as fallback for mobile
+    // Get values directly from form elements - bypass React state entirely
     const form = e.target as HTMLFormElement;
     const formElements = form.elements as any;
     
-    // Try to get values from form elements directly (fallback for mobile)
-    const actualValues = {
-      firstName: formElements.firstName?.value || formData.firstName,
-      lastName: formElements.lastName?.value || formData.lastName,
-      email: formElements.email?.value || formData.email,
-      address: formElements.address?.value || formData.address,
-      propertyType: formData.propertyType, // Select components use state
-      timeline: formData.timeline // Select components use state
-    };
+    // Read all values directly from DOM
+    const firstName = formElements.firstName?.value || '';
+    const lastName = formElements.lastName?.value || '';
+    const email = formElements.email?.value || '';
+    const address = formElements.address?.value || '';
     
-    console.log('Contact form submission started');
-    console.log('State formData:', formData);
-    console.log('Actual form values:', actualValues);
+    console.log('Contact form - DOM values:', { firstName, lastName, email, address });
+    console.log('Contact form - React state:', formData);
     
-    // Use actual values for validation
-    if (!actualValues.firstName?.trim() || !actualValues.lastName?.trim() || 
-        !actualValues.email?.trim() || !actualValues.address?.trim()) {
-      console.error('Contact form - Validation failed. Empty fields:', {
-        firstName: !actualValues.firstName?.trim(),
-        lastName: !actualValues.lastName?.trim(),
-        email: !actualValues.email?.trim(),
-        address: !actualValues.address?.trim()
-      });
-      
+    // Simple validation using DOM values
+    if (!firstName.trim() || !lastName.trim() || !email.trim() || !address.trim()) {
+      console.error('Contact form - Validation failed using DOM values');
       setSubmitStatus('error');
       setTimeout(() => setSubmitStatus('idle'), 5000);
       return;
     }
     
-    // Update formData with actual values before submission
+    // Create submission data from DOM values
     const submissionData = {
-      ...formData,
-      ...actualValues
+      firstName: firstName.trim(),
+      lastName: lastName.trim(),
+      email: email.trim(),
+      address: address.trim(),
+      propertyType: formData.propertyType || '',
+      timeline: formData.timeline || ''
     };
     
     setIsSubmitting(true);
