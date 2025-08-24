@@ -20,41 +20,45 @@ export const ContactSection = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Form submission started with data:', formData);
     
-    // Log all form data for debugging
-    console.log('Contact form - Debug info:', {
-      formData,
-      firstName: formData.firstName,
-      firstNameLength: formData.firstName?.length,
-      lastName: formData.lastName,
-      lastNameLength: formData.lastName?.length,
-      email: formData.email,
-      emailLength: formData.email?.length,
-      address: formData.address,
-      addressLength: formData.address?.length,
-      propertyType: formData.propertyType,
-      timeline: formData.timeline
-    });
+    // Get values directly from form elements as fallback for mobile
+    const form = e.target as HTMLFormElement;
+    const formElements = form.elements as any;
     
-    // Only validate if fields are truly empty (not just whitespace)
-    if (!formData.firstName?.trim() || !formData.lastName?.trim() || !formData.email?.trim() || !formData.address?.trim()) {
+    // Try to get values from form elements directly (fallback for mobile)
+    const actualValues = {
+      firstName: formElements.firstName?.value || formData.firstName,
+      lastName: formElements.lastName?.value || formData.lastName,
+      email: formElements.email?.value || formData.email,
+      address: formElements.address?.value || formData.address,
+      propertyType: formData.propertyType, // Select components use state
+      timeline: formData.timeline // Select components use state
+    };
+    
+    console.log('Contact form submission started');
+    console.log('State formData:', formData);
+    console.log('Actual form values:', actualValues);
+    
+    // Use actual values for validation
+    if (!actualValues.firstName?.trim() || !actualValues.lastName?.trim() || 
+        !actualValues.email?.trim() || !actualValues.address?.trim()) {
       console.error('Contact form - Validation failed. Empty fields:', {
-        firstName: !formData.firstName?.trim(),
-        lastName: !formData.lastName?.trim(),
-        email: !formData.email?.trim(),
-        address: !formData.address?.trim()
+        firstName: !actualValues.firstName?.trim(),
+        lastName: !actualValues.lastName?.trim(),
+        email: !actualValues.email?.trim(),
+        address: !actualValues.address?.trim()
       });
-      
-      // Show alert on mobile for better debugging
-      if (window.innerWidth <= 768) {
-        alert(`Please fill all required fields:\n${!formData.firstName?.trim() ? '- First Name\n' : ''}${!formData.lastName?.trim() ? '- Last Name\n' : ''}${!formData.email?.trim() ? '- Email\n' : ''}${!formData.address?.trim() ? '- Address' : ''}`);
-      }
       
       setSubmitStatus('error');
       setTimeout(() => setSubmitStatus('idle'), 5000);
       return;
     }
+    
+    // Update formData with actual values before submission
+    const submissionData = {
+      ...formData,
+      ...actualValues
+    };
     
     setIsSubmitting(true);
 
@@ -69,14 +73,14 @@ export const ContactSection = () => {
         url
       });
       console.log('Submitting lead to:', url);
-      console.log('Form data:', formData);
+      console.log('Submission data:', submissionData);
       
       const res = await fetch(url, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(submissionData),
         mode: 'cors',
       });
 
