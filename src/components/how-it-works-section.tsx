@@ -18,8 +18,37 @@ import {
   Calendar
 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { useEffect, useRef, useState } from "react";
 
 export const HowItWorksSection = () => {
+  const [visibleCards, setVisibleCards] = useState<Set<number>>(new Set());
+  const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
+
+  useEffect(() => {
+    const observers = cardRefs.current.map((ref, index) => {
+      if (!ref) return null;
+      
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) {
+            setVisibleCards(prev => new Set([...prev, index]));
+          }
+        },
+        {
+          threshold: 0.3, // Trigger when 30% of the card is visible
+          rootMargin: '0px 0px -50px 0px' // Add some offset
+        }
+      );
+      
+      observer.observe(ref);
+      return observer;
+    });
+
+    return () => {
+      observers.forEach(observer => observer?.disconnect());
+    };
+  }, []);
+
   const steps = [
     {
       number: "01",
@@ -98,14 +127,22 @@ export const HowItWorksSection = () => {
           </div>
           
           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
-            {steps.map((step, index) => (
-              <div 
-                key={index}
-                className="relative group"
-                style={{
-                  animationDelay: step.delay
-                }}
-              >
+            {steps.map((step, index) => {
+              const isVisible = visibleCards.has(index);
+              
+              return (
+                <div 
+                  key={index}
+                  ref={el => cardRefs.current[index] = el}
+                  className={cn(
+                    "relative group transition-all duration-700 ease-out",
+                    // Mobile scroll-based animations
+                    "lg:hover:hover:transform-none", // Disable hover transforms on desktop when we want scroll-based
+                  )}
+                  style={{
+                    animationDelay: step.delay
+                  }}
+                >
                 {/* Mobile Connection Line */}
                 {index < steps.length - 1 && (
                   <div className="block lg:hidden absolute -bottom-4 left-1/2 w-0.5 h-8 bg-gradient-to-b from-primary/20 to-transparent transform -translate-x-1/2" />
@@ -113,28 +150,33 @@ export const HowItWorksSection = () => {
                 
                 <Card className={cn(
                   "relative h-full overflow-hidden min-h-[400px]",
-                  "border-0 shadow-lg transition-shadow duration-500",
+                  "border-0 shadow-lg transition-all duration-700",
                   "bg-white/90 backdrop-blur-sm",
-                  "transition-all duration-500",
                   "animate-fade-in",
-                  // Hover effects only for devices that support hover
+                  // Desktop hover effects only for devices that support hover
                   "hover:hover:shadow-2xl hover:hover:-translate-y-2 hover:hover:scale-[1.02]",
-                  // Touch-friendly active states for mobile
-                  "active:scale-[0.98] active:shadow-lg"
+                  // Mobile scroll-based effects
+                  isVisible && "lg:shadow-2xl lg:-translate-y-2 lg:scale-[1.02]"
                 )}>
                   {/* Gradient Overlay */}
                   <div className={cn(
-                    "absolute inset-0 opacity-0 transition-all duration-500",
+                    "absolute inset-0 transition-all duration-700",
                     "bg-gradient-to-br",
                     step.bgColor,
-                    // Hover effects only for devices that support hover
-                    "group-hover:hover:opacity-100",
-                    // Touch-friendly active states for mobile
-                    "group-active:opacity-50"
+                    // Desktop hover effects only for devices that support hover
+                    "opacity-0 group-hover:hover:opacity-100",
+                    // Mobile scroll-based effects
+                    isVisible ? "opacity-100" : "opacity-0"
                   )} />
                   
                   {/* Shimmer Effect */}
-                  <div className="absolute inset-0 opacity-0 transition-opacity duration-700 group-hover:hover:opacity-100">
+                  <div className={cn(
+                    "absolute inset-0 transition-opacity duration-700",
+                    // Desktop hover effects
+                    "opacity-0 group-hover:hover:opacity-100",
+                    // Mobile scroll-based effects
+                    isVisible && "opacity-100"
+                  )}>
                     <div className="absolute inset-0 bg-[linear-gradient(105deg,transparent_40%,rgba(255,255,255,0.7)_50%,transparent_60%)] animate-shimmer"></div>
                   </div>
                   
@@ -144,12 +186,12 @@ export const HowItWorksSection = () => {
                       <div className={cn(
                         "relative w-16 h-16 rounded-2xl flex items-center justify-center",
                         "bg-gradient-to-br shadow-lg",
-                        "transform rotate-3 transition-all duration-500",
+                        "transform transition-all duration-700",
                         step.color,
-                        // Hover effects only for devices that support hover
-                        "group-hover:hover:rotate-0 group-hover:hover:scale-110",
-                        // Touch-friendly active states for mobile
-                        "group-active:rotate-0 group-active:scale-105"
+                        // Desktop hover effects
+                        "rotate-3 group-hover:hover:rotate-0 group-hover:hover:scale-110",
+                        // Mobile scroll-based effects
+                        isVisible ? "rotate-0 scale-110" : "rotate-3 scale-100"
                       )}>
                         <span className="text-white font-bold text-lg">{step.number}</span>
                         <div className="absolute inset-0 rounded-2xl bg-white/20 animate-pulse"></div>
@@ -162,27 +204,27 @@ export const HowItWorksSection = () => {
                         "relative inline-flex items-center justify-center",
                         "w-20 h-20 rounded-3xl",
                         "bg-gradient-to-br shadow-lg",
-                        "transition-all duration-500",
+                        "transition-all duration-700",
                         step.bgColor,
-                        // Hover effects only for devices that support hover
+                        // Desktop hover effects
                         "group-hover:hover:scale-110 group-hover:hover:rotate-3",
-                        // Touch-friendly active states for mobile
-                        "group-active:scale-105 group-active:rotate-1"
+                        // Mobile scroll-based effects
+                        isVisible ? "scale-110 rotate-3" : "scale-100 rotate-0"
                       )}>
                         <div className={cn(
-                          "absolute inset-0 rounded-3xl bg-gradient-to-br opacity-0 transition-all duration-500",
+                          "absolute inset-0 rounded-3xl bg-gradient-to-br transition-all duration-700",
                           step.color,
-                          // Hover effects only for devices that support hover
-                          "group-hover:hover:opacity-100",
-                          // Touch-friendly active states for mobile
-                          "group-active:opacity-60"
+                          // Desktop hover effects
+                          "opacity-0 group-hover:hover:opacity-100",
+                          // Mobile scroll-based effects
+                          isVisible ? "opacity-100" : "opacity-0"
                         )} />
                         <step.icon className={cn(
-                          "relative w-10 h-10 text-primary transition-colors duration-500 z-10",
-                          // Hover effects only for devices that support hover
-                          "group-hover:hover:text-white",
-                          // Touch-friendly active states for mobile
-                          "group-active:text-white"
+                          "relative w-10 h-10 transition-colors duration-700 z-10",
+                          // Desktop hover effects
+                          "text-primary group-hover:hover:text-white",
+                          // Mobile scroll-based effects
+                          isVisible ? "text-white" : "text-primary"
                         )} strokeWidth={1.5} />
                       </div>
                     </div>
@@ -191,11 +233,11 @@ export const HowItWorksSection = () => {
                     <div className="flex-1 space-y-4 flex flex-col">
                       <div className="flex-1">
                         <h3 className={cn(
-                          "text-xl font-bold text-gray-900 transition-colors duration-300",
-                          // Hover effects only for devices that support hover
-                          "group-hover:hover:text-primary",
-                          // Touch-friendly active states for mobile
-                          "group-active:text-primary"
+                          "text-xl font-bold transition-colors duration-700",
+                          // Desktop hover effects
+                          "text-gray-900 group-hover:hover:text-primary",
+                          // Mobile scroll-based effects
+                          isVisible ? "text-primary" : "text-gray-900"
                         )}>
                           {step.title}
                         </h3>
@@ -210,17 +252,17 @@ export const HowItWorksSection = () => {
                         <div className={cn(
                           "inline-flex items-center gap-2 px-4 py-2 rounded-full",
                           "bg-gradient-to-r border",
-                          "transition-all duration-300",
+                          "transition-all duration-700",
                           "shadow-sm",
                           step.bgColor,
                           index === 0 ? "border-primary/20" : 
                           index === 1 ? "border-accent/20" : 
                           index === 2 ? "border-success/20" : 
                           "border-trust/20",
-                          // Hover effects only for devices that support hover
+                          // Desktop hover effects
                           "group-hover:hover:scale-105 group-hover:hover:shadow-md",
-                          // Touch-friendly active states for mobile
-                          "group-active:scale-100 group-active:shadow-sm"
+                          // Mobile scroll-based effects
+                          isVisible ? "scale-105 shadow-md" : "scale-100 shadow-sm"
                         )}>
                           <step.highlightIcon className={cn(
                             "w-4 h-4",
@@ -249,19 +291,20 @@ export const HowItWorksSection = () => {
                   <div className="hidden lg:flex absolute top-1/2 -right-6 transform -translate-y-1/2 z-20">
                     <div className="relative">
                       <div className={cn(
-                        "w-12 h-12 glass rounded-full flex items-center justify-center shadow-lg transition-transform duration-300",
-                        // Hover effects only for devices that support hover
+                        "w-12 h-12 glass rounded-full flex items-center justify-center shadow-lg transition-transform duration-700",
+                        // Desktop hover effects
                         "group-hover:hover:scale-110",
-                        // Touch-friendly active states for mobile
-                        "group-active:scale-105"
+                        // Mobile scroll-based effects (for the previous card)
+                        visibleCards.has(index) ? "scale-110" : "scale-100"
                       )}>
                         <ArrowRight className="w-5 h-5 text-primary" />
                       </div>
                     </div>
                   </div>
                 )}
-              </div>
-            ))}
+                </div>
+              );
+            })}
           </div>
         </div>
 
@@ -363,40 +406,18 @@ export const HowItWorksSection = () => {
           }
         }
 
+        /* Mobile devices get scroll-based animations instead of touch-based ones */
         @media (hover: none) and (pointer: coarse) {
-          /* Mobile touch effects - only apply on touch devices */
-          .group:active .group-active\\:opacity-50 {
-            opacity: 0.5;
+          /* Disable any accidental touch feedback that might make cards feel clickable */
+          .group {
+            -webkit-tap-highlight-color: transparent;
+            user-select: none;
           }
-          .group:active .group-active\\:opacity-60 {
-            opacity: 0.6;
-          }
-          .group:active .group-active\\:scale-\\[0\\.98\\] {
-            transform: scale(0.98);
-          }
-          .group:active .group-active\\:scale-105 {
-            transform: scale(1.05);
-          }
-          .group:active .group-active\\:scale-100 {
-            transform: scale(1);
-          }
-          .group:active .group-active\\:rotate-0 {
-            transform: rotate(0deg);
-          }
-          .group:active .group-active\\:rotate-1 {
-            transform: rotate(1deg);
-          }
-          .group:active .group-active\\:text-white {
-            color: white;
-          }
-          .group:active .group-active\\:text-primary {
-            color: hsl(var(--primary));
-          }
-          .group:active .group-active\\:shadow-lg {
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-          }
-          .group:active .group-active\\:shadow-sm {
-            box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+          
+          /* Ensure smooth transitions on mobile */
+          .group * {
+            transition-duration: 0.7s;
+            transition-timing-function: ease-out;
           }
         }
       `}</style>

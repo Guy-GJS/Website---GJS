@@ -231,7 +231,7 @@ export const HeroSection = () => {
                       <div className="space-y-3">
                         <h3 className="text-2xl font-bold text-gray-900">Thank You!</h3>
                         <p className="text-lg text-muted-foreground">
-                          We've received your information and will contact you soon with a cash offer for your property.
+                          We've received your information and will contact you by email soon with a cash offer for your property.
                         </p>
                         <p className="text-sm text-muted-foreground">
                           Expect to hear from us within 24 hours.
