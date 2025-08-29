@@ -60,7 +60,7 @@ const Navigation = () => {
             <div className="flex flex-col">
               <span className="text-base sm:text-lg font-bold bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent group-hover:from-primary group-hover:to-accent transition-all duration-300">
                 <span className="hidden sm:inline">Fair Property Group</span>
-                <span className="sm:hidden">Fair Property</span>
+                <span className="sm:hidden">Fair Property Group</span>
               </span>
 
             </div>

@@ -83,7 +83,7 @@ export const HowItWorksSection = () => {
           </h2>
           
           <p className="text-lg sm:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            From submission to cash in hand, our streamlined process makes selling your home faster and easier than ever before
+            From submission to cash in hand, our streamlined process makes selling your home faster and easier than ever before.
           </p>
         </div>
 
