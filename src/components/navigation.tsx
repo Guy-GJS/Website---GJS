@@ -51,7 +51,7 @@ const Navigation = () => {
               {/* Logo image */}
               <div className="relative w-10 h-10 sm:w-11 sm:h-11">
                 <img 
-                  src="/Logo.png" 
+                  src="/Logo-removebg-preview.png" 
                   alt="Fair Property Group Logo" 
                   className="w-full h-full object-contain group-hover:scale-110 transition-all duration-500"
                 />
@@ -118,7 +118,7 @@ const Navigation = () => {
                   >
                     <div className="w-10 h-10">
                       <img 
-                        src="/Logo.png" 
+                        src="/Logo-removebg-preview.png" 
                         alt="Fair Property Group Logo" 
                         className="w-full h-full object-contain"
                       />

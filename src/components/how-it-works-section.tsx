@@ -113,21 +113,28 @@ export const HowItWorksSection = () => {
                 
                 <Card className={cn(
                   "relative h-full overflow-hidden min-h-[400px]",
-                  "border-0 shadow-lg hover:shadow-2xl",
+                  "border-0 shadow-lg transition-shadow duration-500",
                   "bg-white/90 backdrop-blur-sm",
                   "transition-all duration-500",
-                  "group-hover:-translate-y-2 group-hover:scale-[1.02]",
-                  "animate-fade-in"
+                  "animate-fade-in",
+                  // Hover effects only for devices that support hover
+                  "hover:hover:shadow-2xl hover:hover:-translate-y-2 hover:hover:scale-[1.02]",
+                  // Touch-friendly active states for mobile
+                  "active:scale-[0.98] active:shadow-lg"
                 )}>
                   {/* Gradient Overlay */}
                   <div className={cn(
-                    "absolute inset-0 opacity-0 group-hover:opacity-100 transition-all duration-500",
+                    "absolute inset-0 opacity-0 transition-all duration-500",
                     "bg-gradient-to-br",
-                    step.bgColor
+                    step.bgColor,
+                    // Hover effects only for devices that support hover
+                    "group-hover:hover:opacity-100",
+                    // Touch-friendly active states for mobile
+                    "group-active:opacity-50"
                   )} />
                   
                   {/* Shimmer Effect */}
-                  <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700">
+                  <div className="absolute inset-0 opacity-0 transition-opacity duration-700 group-hover:hover:opacity-100">
                     <div className="absolute inset-0 bg-[linear-gradient(105deg,transparent_40%,rgba(255,255,255,0.7)_50%,transparent_60%)] animate-shimmer"></div>
                   </div>
                   
@@ -137,9 +144,12 @@ export const HowItWorksSection = () => {
                       <div className={cn(
                         "relative w-16 h-16 rounded-2xl flex items-center justify-center",
                         "bg-gradient-to-br shadow-lg",
-                        "transform rotate-3 group-hover:rotate-0 transition-all duration-500",
-                        "group-hover:scale-110",
-                        step.color
+                        "transform rotate-3 transition-all duration-500",
+                        step.color,
+                        // Hover effects only for devices that support hover
+                        "group-hover:hover:rotate-0 group-hover:hover:scale-110",
+                        // Touch-friendly active states for mobile
+                        "group-active:rotate-0 group-active:scale-105"
                       )}>
                         <span className="text-white font-bold text-lg">{step.number}</span>
                         <div className="absolute inset-0 rounded-2xl bg-white/20 animate-pulse"></div>
@@ -152,21 +162,41 @@ export const HowItWorksSection = () => {
                         "relative inline-flex items-center justify-center",
                         "w-20 h-20 rounded-3xl",
                         "bg-gradient-to-br shadow-lg",
-                        "group-hover:scale-110 group-hover:rotate-3 transition-all duration-500",
-                        step.bgColor
+                        "transition-all duration-500",
+                        step.bgColor,
+                        // Hover effects only for devices that support hover
+                        "group-hover:hover:scale-110 group-hover:hover:rotate-3",
+                        // Touch-friendly active states for mobile
+                        "group-active:scale-105 group-active:rotate-1"
                       )}>
                         <div className={cn(
-                          "absolute inset-0 rounded-3xl bg-gradient-to-br opacity-0 group-hover:opacity-100 transition-all duration-500",
-                          step.color
+                          "absolute inset-0 rounded-3xl bg-gradient-to-br opacity-0 transition-all duration-500",
+                          step.color,
+                          // Hover effects only for devices that support hover
+                          "group-hover:hover:opacity-100",
+                          // Touch-friendly active states for mobile
+                          "group-active:opacity-60"
                         )} />
-                        <step.icon className="relative w-10 h-10 text-primary group-hover:text-white transition-colors duration-500 z-10" strokeWidth={1.5} />
+                        <step.icon className={cn(
+                          "relative w-10 h-10 text-primary transition-colors duration-500 z-10",
+                          // Hover effects only for devices that support hover
+                          "group-hover:hover:text-white",
+                          // Touch-friendly active states for mobile
+                          "group-active:text-white"
+                        )} strokeWidth={1.5} />
                       </div>
                     </div>
                     
                     {/* Content */}
                     <div className="flex-1 space-y-4 flex flex-col">
                       <div className="flex-1">
-                        <h3 className="text-xl font-bold text-gray-900 group-hover:text-primary transition-colors duration-300">
+                        <h3 className={cn(
+                          "text-xl font-bold text-gray-900 transition-colors duration-300",
+                          // Hover effects only for devices that support hover
+                          "group-hover:hover:text-primary",
+                          // Touch-friendly active states for mobile
+                          "group-active:text-primary"
+                        )}>
                           {step.title}
                         </h3>
                         
@@ -180,13 +210,17 @@ export const HowItWorksSection = () => {
                         <div className={cn(
                           "inline-flex items-center gap-2 px-4 py-2 rounded-full",
                           "bg-gradient-to-r border",
-                          "group-hover:scale-105 transition-all duration-300",
-                          "shadow-sm group-hover:shadow-md",
+                          "transition-all duration-300",
+                          "shadow-sm",
                           step.bgColor,
                           index === 0 ? "border-primary/20" : 
                           index === 1 ? "border-accent/20" : 
                           index === 2 ? "border-success/20" : 
-                          "border-trust/20"
+                          "border-trust/20",
+                          // Hover effects only for devices that support hover
+                          "group-hover:hover:scale-105 group-hover:hover:shadow-md",
+                          // Touch-friendly active states for mobile
+                          "group-active:scale-100 group-active:shadow-sm"
                         )}>
                           <step.highlightIcon className={cn(
                             "w-4 h-4",
@@ -214,7 +248,13 @@ export const HowItWorksSection = () => {
                 {index < steps.length - 1 && (
                   <div className="hidden lg:flex absolute top-1/2 -right-6 transform -translate-y-1/2 z-20">
                     <div className="relative">
-                      <div className="w-12 h-12 glass rounded-full flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
+                      <div className={cn(
+                        "w-12 h-12 glass rounded-full flex items-center justify-center shadow-lg transition-transform duration-300",
+                        // Hover effects only for devices that support hover
+                        "group-hover:hover:scale-110",
+                        // Touch-friendly active states for mobile
+                        "group-active:scale-105"
+                      )}>
                         <ArrowRight className="w-5 h-5 text-primary" />
                       </div>
                     </div>
@@ -283,6 +323,81 @@ export const HowItWorksSection = () => {
 
         .animate-shimmer {
           animation: shimmer 3s ease-out infinite;
+        }
+
+        /* Ensure proper hover behavior on different devices */
+        @media (hover: hover) and (pointer: fine) {
+          /* Desktop hover effects - only apply on devices that support true hover */
+          .group:hover .group-hover\\:hover\\:opacity-100 {
+            opacity: 1;
+          }
+          .group:hover .group-hover\\:hover\\:scale-110 {
+            transform: scale(1.1);
+          }
+          .group:hover .group-hover\\:hover\\:rotate-3 {
+            transform: rotate(3deg);
+          }
+          .group:hover .group-hover\\:hover\\:rotate-0 {
+            transform: rotate(0deg);
+          }
+          .group:hover .group-hover\\:hover\\:text-white {
+            color: white;
+          }
+          .group:hover .group-hover\\:hover\\:text-primary {
+            color: hsl(var(--primary));
+          }
+          .group:hover .group-hover\\:hover\\:shadow-2xl {
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+          }
+          .group:hover .group-hover\\:hover\\:-translate-y-2 {
+            transform: translateY(-0.5rem);
+          }
+          .group:hover .group-hover\\:hover\\:scale-\\[1\\.02\\] {
+            transform: scale(1.02);
+          }
+          .group:hover .group-hover\\:hover\\:shadow-md {
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+          }
+          .group:hover .group-hover\\:hover\\:scale-105 {
+            transform: scale(1.05);
+          }
+        }
+
+        @media (hover: none) and (pointer: coarse) {
+          /* Mobile touch effects - only apply on touch devices */
+          .group:active .group-active\\:opacity-50 {
+            opacity: 0.5;
+          }
+          .group:active .group-active\\:opacity-60 {
+            opacity: 0.6;
+          }
+          .group:active .group-active\\:scale-\\[0\\.98\\] {
+            transform: scale(0.98);
+          }
+          .group:active .group-active\\:scale-105 {
+            transform: scale(1.05);
+          }
+          .group:active .group-active\\:scale-100 {
+            transform: scale(1);
+          }
+          .group:active .group-active\\:rotate-0 {
+            transform: rotate(0deg);
+          }
+          .group:active .group-active\\:rotate-1 {
+            transform: rotate(1deg);
+          }
+          .group:active .group-active\\:text-white {
+            color: white;
+          }
+          .group:active .group-active\\:text-primary {
+            color: hsl(var(--primary));
+          }
+          .group:active .group-active\\:shadow-lg {
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+          }
+          .group:active .group-active\\:shadow-sm {
+            box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+          }
         }
       `}</style>
     </section>
