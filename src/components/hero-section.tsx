@@ -209,7 +209,7 @@ export const HeroSection = () => {
                   <div className="absolute inset-0 bg-[linear-gradient(45deg,transparent_30%,rgba(255,255,255,0.1)_50%,transparent_70%)] animate-shimmer"></div>
                   <div className="relative">
                     <h2 className="text-2xl sm:text-3xl font-bold text-white">
-                      Get Your Cash Offer
+                      Get Your Cash Offer Now
                     </h2>
                     <p className="text-white/90 mt-2 whitespace-nowrap">
                       Free • No Obligation • 24hr Response
@@ -365,7 +365,7 @@ export const HeroSection = () => {
                         </span>
                       ) : (
                         <span className="flex items-center justify-center gap-2">
-                          Get My Cash Offer
+                          Get Your Cash Offer Now
                           <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
                         </span>
                       )}

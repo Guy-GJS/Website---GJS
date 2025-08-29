@@ -107,7 +107,7 @@ export const FAQSection = () => {
                 document.getElementById('hero-form')?.scrollIntoView({ behavior: 'smooth' });
               }}
             >
-              Get Your Offer
+              Get Your Cash Offer Now
               <ArrowRight className="w-5 h-5 ml-2" />
             </Button>
             <p className="text-sm text-muted-foreground mt-3">

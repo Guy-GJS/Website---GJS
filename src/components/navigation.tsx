@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { Menu, Home, ArrowRight, Sparkles } from "lucide-react";
+import { Menu, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 
@@ -20,7 +20,6 @@ const Navigation = () => {
     { name: "How it works", href: "#how-it-works" },
     { name: "Why us", href: "#why-us" },
     { name: "FAQ", href: "#faq" },
-    { name: "Contact", href: "#contact" },
     { name: "About", href: "#about" },
   ];
 
@@ -49,13 +48,13 @@ const Navigation = () => {
           {/* Modern Logo */}
           <Link to="/" className="flex items-center space-x-3 group relative">
             <div className="relative">
-              {/* Sleek logo container */}
+              {/* Logo image */}
               <div className="relative w-10 h-10 sm:w-11 sm:h-11">
-                <div className="absolute inset-0 bg-gradient-to-br from-primary to-accent rounded-2xl opacity-90 group-hover:opacity-100 transition-all duration-500 group-hover:scale-110 group-hover:rotate-3"></div>
-                <div className="relative w-full h-full bg-gradient-to-br from-primary to-accent rounded-2xl flex items-center justify-center shadow-lg group-hover:shadow-glow transition-all duration-300">
-                  <Home className="w-5 h-5 sm:w-5 sm:h-5 text-white" strokeWidth={2.5} />
-                  <Sparkles className="absolute -top-1 -right-1 w-3 h-3 text-yellow-300 animate-pulse" />
-                </div>
+                <img 
+                  src="/Logo.png" 
+                  alt="Fair Property Group Logo" 
+                  className="w-full h-full object-contain group-hover:scale-110 transition-all duration-500"
+                />
               </div>
             </div>
             <div className="flex flex-col">
@@ -88,7 +87,7 @@ const Navigation = () => {
                 className="relative overflow-hidden bg-gradient-to-r from-primary to-accent hover:from-primary hover:to-accent text-white shadow-lg hover:shadow-glow transition-all duration-300 text-sm px-6 py-2 rounded-full font-semibold group"
               >
                 <span className="relative z-10 flex items-center gap-2">
-                  Get Cash Offer
+                  Get Your Cash Offer Now
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
                 </span>
                 <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></div>
@@ -117,8 +116,12 @@ const Navigation = () => {
                     onClick={handleLinkClick}
                     className="flex items-center space-x-3 pb-6 border-b border-border/20"
                   >
-                    <div className="w-10 h-10 bg-gradient-to-br from-primary to-accent rounded-2xl flex items-center justify-center shadow-lg">
-                      <Home className="w-5 h-5 text-white" strokeWidth={2.5} />
+                    <div className="w-10 h-10">
+                      <img 
+                        src="/Logo.png" 
+                        alt="Fair Property Group Logo" 
+                        className="w-full h-full object-contain"
+                      />
                     </div>
                     <div className="flex flex-col">
                       <span className="text-lg font-bold text-gradient">
@@ -154,7 +157,7 @@ const Navigation = () => {
                       size="lg"
                     >
                       <span className="flex items-center justify-center gap-2">
-                        Get Cash Offer
+                        Get Your Cash Offer Now
                         <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
                       </span>
                     </Button>

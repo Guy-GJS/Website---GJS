@@ -79,7 +79,7 @@ export const WhyUsSection = () => {
             <span className="text-gradient">Sell Your Home</span>
           </h2>
           
-          <p className="text-lg sm:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed whitespace-nowrap">
+          <p className="text-lg sm:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
             Experience the difference with our transparent, fast, and hassle-free home buying process
           </p>
         </div>
@@ -190,7 +190,7 @@ export const WhyUsSection = () => {
             }}
           >
             <span className="flex items-center gap-2">
-              Get Your Cash Offer Today
+              Get Your Cash Offer Now
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
             </span>
           </Button>

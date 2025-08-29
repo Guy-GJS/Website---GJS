@@ -17,10 +17,10 @@ export const Footer = () => {
                 <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
               </svg>
               <a 
-                href="mailto:offers@fairpropertygroup.com" 
+                href="mailto:contact@fairproperttgroup.com" 
                 className="hover:text-white transition-colors duration-200 break-all"
               >
-                offers@fairpropertygroup.com
+                contact@fairproperttgroup.com
               </a>
             </div>
           </div>
@@ -49,11 +49,7 @@ export const Footer = () => {
                   FAQ
                 </a>
               </li>
-              <li>
-                <a href="#contact" className="text-gray-400 hover:text-white transition-colors duration-200">
-                  Contact
-                </a>
-              </li>
+
             </ul>
           </div>
         </div>

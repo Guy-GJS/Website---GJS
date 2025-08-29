@@ -58,8 +58,8 @@ export const HowItWorksSection = () => {
       number: "04",
       icon: DollarSign,
       title: "Get Paid",
-      description: "We handle all paperwork and closing costs. You get your cash with no hidden fees and on realtor commissions.",
-      highlight: "Save up to 10% in fees and commisions",
+      description: "We handle all paperwork and closing costs. You get your cash with no hidden fees and no realtor commissions.",
+      highlight: "Save up to 10% in fees and commissions",
       highlightIcon: Sparkles,
       color: "from-trust to-trust/80",
       bgColor: "from-trust/5 to-trust/10",
@@ -243,7 +243,7 @@ export const HowItWorksSection = () => {
               }}
             >
               <span className="flex items-center gap-2">
-                Start Your Cash Offer
+                Get Your Cash Offer Now
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
               </span>
             </Button>
