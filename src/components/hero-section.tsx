@@ -77,7 +77,7 @@ export const HeroSection = () => {
   };
 
   return (
-    <section id="cta" className="relative min-h-screen flex items-center overflow-hidden bg-gradient-to-br from-slate-50 via-white to-primary/5">
+    <section id="cta" className="relative min-h-screen flex items-start lg:items-center overflow-hidden bg-gradient-to-br from-slate-50 via-white to-primary/5 pt-24 lg:pt-0 scroll-mt-24">
       {/* Modern mesh gradient background */}
       <div className="absolute inset-0">
         <div className="absolute inset-0 bg-[radial-gradient(at_40%_20%,hsla(201,96%,32%,0.1)_0px,transparent_50%),radial-gradient(at_80%_0%,hsla(186,100%,42%,0.1)_0px,transparent_50%),radial-gradient(at_0%_50%,hsla(199,89%,48%,0.1)_0px,transparent_50%)]"></div>
@@ -89,12 +89,12 @@ export const HeroSection = () => {
       <div className="absolute bottom-20 right-10 w-96 h-96 bg-accent/10 rounded-full blur-3xl animate-pulse animation-delay-2000"></div>
       
       {/* Content */}
-      <div className="relative z-10 px-4 py-20 sm:px-6 md:py-24 lg:py-28 w-full">
+      <div className="relative z-10 px-4 py-8 sm:px-6 sm:py-16 md:py-24 lg:py-28 w-full">
         <div className="max-w-7xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
             
             {/* Left Column - Content */}
-            <div className="space-y-8 animate-fade-in">
+            <div className="space-y-8 animate-fade-in order-2 lg:order-1">
               {/* Main Headline */}
               <div className="space-y-4">
                 <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight">
@@ -165,7 +165,7 @@ export const HeroSection = () => {
             </div>
             
             {/* Right Column - Form */}
-            <div className="w-full max-w-md mx-auto lg:ml-auto animate-fade-in animation-delay-200">
+            <div className="w-full max-w-md mx-auto lg:ml-auto animate-fade-in animation-delay-200 order-1 lg:order-2">
               <Card className="border-0 shadow-2xl bg-white/95 backdrop-blur-md overflow-hidden">
                 {/* Form Header */}
                 <div className="bg-gradient-to-r from-primary via-primary to-accent p-6 sm:p-8 relative overflow-hidden">
