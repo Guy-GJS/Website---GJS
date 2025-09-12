@@ -22,14 +22,28 @@ export const ContactSection = () => {
     e.preventDefault();
     console.log('Form submission started with data:', formData);
     setIsSubmitting(true);
+    setSubmitStatus('idle'); // Reset any previous status
 
     try {
-      // Use environment variable or fallback to localhost:3000
-      const apiBase = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3000';
+      // Determine API base URL based on environment
+      let apiBase = '';
+      
+      // Check if we have an environment variable set
+      if (import.meta.env.VITE_API_BASE_URL) {
+        apiBase = import.meta.env.VITE_API_BASE_URL;
+      } else if (import.meta.env.PROD) {
+        // In production, use the production API
+        apiBase = 'https://platform-lovat-ten.vercel.app';
+      } else {
+        // In development, use localhost:3000
+        apiBase = 'http://localhost:3000';
+      }
+      
       const url = `${apiBase}/api/leads`;
       
       console.log('Environment check:', {
         VITE_API_BASE_URL: import.meta.env.VITE_API_BASE_URL,
+        isProd: import.meta.env.PROD,
         apiBase,
         url
       });
@@ -39,10 +53,12 @@ export const ContactSection = () => {
       const res = await fetch(url, {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
         },
         body: JSON.stringify(formData),
         mode: 'cors',
+        credentials: 'omit' // Don't send cookies for CORS requests
       });
 
       console.log('Response status:', res.status, res.statusText);
@@ -57,14 +73,35 @@ export const ContactSection = () => {
       const result = await res.json();
       console.log('Lead submitted successfully:', result);
 
-      // Reset form on success
-      setFormData({ firstName: '', lastName: '', email: '', address: '', propertyType: '', timeline: '' });
-      setSubmitStatus('success');
-      // Reset success status after 3 seconds
-      setTimeout(() => setSubmitStatus('idle'), 3000);
+      // Check if the submission was truly successful
+      console.log('Checking submission result:', result);
+      if (result.success) {
+        console.log('✅ Form submission successful! Setting success state...');
+        // Reset form on success
+        setFormData({ firstName: '', lastName: '', email: '', address: '', propertyType: '', timeline: '' });
+        setSubmitStatus('success');
+        console.log('✅ Success state set, confirmation message should now be visible');
+        // Reset success status after 5 seconds
+        setTimeout(() => {
+          console.log('⏰ Resetting success status back to idle');
+          setSubmitStatus('idle');
+        }, 5000);
+      } else {
+        console.error('❌ Submission result indicates failure:', result);
+        throw new Error(result.message || 'Submission failed');
+      }
     } catch (err) {
       console.error('Submission failed with error:', err);
       console.error('Error details:', err instanceof Error ? err.message : String(err));
+      
+      // Show user-friendly error message
+      if (err instanceof TypeError && err.message.includes('Failed to fetch')) {
+        console.error('Network error: Unable to reach the server. Please check if the backend is running.');
+        alert('Unable to submit form. Please check your connection and try again.');
+      } else {
+        console.error('Error submitting form:', err);
+      }
+      
       setSubmitStatus('error');
       // Reset error status after 5 seconds
       setTimeout(() => setSubmitStatus('idle'), 5000);
@@ -246,6 +283,52 @@ export const ContactSection = () => {
                     </span>
                   )}
                 </Button>
+
+                {/* Success/Error Message */}
+                {submitStatus === 'success' && (
+                  <div className="mt-4 p-4 bg-green-50 border border-green-200 rounded-xl animate-in fade-in slide-in-from-top-2 duration-300">
+                    <div className="flex items-center gap-3">
+                      <div className="flex-shrink-0">
+                        <CheckCircle className="w-6 h-6 text-green-600" />
+                      </div>
+                      <div className="flex-1">
+                        <h3 className="text-sm font-semibold text-green-800">
+                          Thank you for your submission!
+                        </h3>
+                        <p className="text-sm text-green-700 mt-1">
+                          We've received your information and will get back to you within 24 hours with a fair cash offer for your property.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                )}
+                
+                {/* Debug info - remove this after testing */}
+                {process.env.NODE_ENV === 'development' && (
+                  <div className="mt-2 p-2 bg-gray-100 text-xs text-gray-600 rounded">
+                    Debug: submitStatus = "{submitStatus}", isSubmitting = {isSubmitting ? 'true' : 'false'}
+                  </div>
+                )}
+
+                {submitStatus === 'error' && (
+                  <div className="mt-4 p-4 bg-red-50 border border-red-200 rounded-xl">
+                    <div className="flex items-center gap-3">
+                      <div className="flex-shrink-0">
+                        <svg className="w-6 h-6 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                      </div>
+                      <div className="flex-1">
+                        <h3 className="text-sm font-semibold text-red-800">
+                          Submission Failed
+                        </h3>
+                        <p className="text-sm text-red-700 mt-1">
+                          There was an error submitting your information. Please try again or contact us directly.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                )}
 
                 {/* Trust Badges */}
                 <div className="flex items-center justify-center gap-4 pt-4 border-t border-gray-100">
