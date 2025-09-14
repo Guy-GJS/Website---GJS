@@ -4,6 +4,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Card, CardContent } from "@/components/ui/card";
+import { AddressAutocomplete } from "@/components/ui/address-autocomplete";
 import { ArrowRight, CheckCircle, Clock, DollarSign, Sparkles, TrendingUp, Shield, Zap } from "lucide-react";
 
 export const HeroSection = () => {
@@ -108,10 +109,11 @@ export const HeroSection = () => {
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.id]: e.target.value
-    });
+    const { id, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [id]: value
+    }));
   };
 
   return (
@@ -267,20 +269,30 @@ export const HeroSection = () => {
                     {/* Property Address */}
                     <div className="space-y-1">
                       <Label htmlFor="address" className="sr-only">Property Address</Label>
-                      <Input 
-                        id="address" 
-                        placeholder="Property Address" 
-                        required 
+                      <AddressAutocomplete
+                        id="address"
+                        placeholder="Property Address"
+                        required
                         className="h-11 border-gray-200 focus:border-primary focus:ring-primary/20 transition-all duration-300 rounded-xl placeholder-consistent"
                         value={formData.address}
-                        onChange={handleInputChange}
+                        onChange={(value, placeDetails) => {
+                          console.log('Hero form - Address updated:', value);
+                          setFormData(prev => ({
+                            ...prev,
+                            address: value
+                          }));
+                          // Optional: You can also store placeDetails if needed for additional data
+                          if (placeDetails) {
+                            console.log('Hero form - Selected place details:', placeDetails);
+                          }
+                        }}
                       />
                     </div>
                     
                     {/* Property Type */}
                     <div className="space-y-1">
                       <Label htmlFor="propertyType" className="sr-only">Property Type</Label>
-                      <Select onValueChange={(value) => setFormData({...formData, propertyType: value})}>
+                      <Select value={formData.propertyType} onValueChange={(value) => setFormData(prev => ({ ...prev, propertyType: value }))}>
                         <SelectTrigger className="h-11 border-gray-200 focus:border-primary focus:ring-primary/20 transition-all duration-300 rounded-xl">
                           <SelectValue placeholder="Property Type" className="placeholder-consistent" />
                         </SelectTrigger>
@@ -298,7 +310,7 @@ export const HeroSection = () => {
                     {/* Timeline */}
                     <div className="space-y-1">
                       <Label htmlFor="timeline" className="sr-only">Selling Timeline</Label>
-                      <Select onValueChange={(value) => setFormData({...formData, timeline: value})}>
+                      <Select value={formData.timeline} onValueChange={(value) => setFormData(prev => ({ ...prev, timeline: value }))}>
                         <SelectTrigger className="h-11 border-gray-200 focus:border-primary focus:ring-primary/20 transition-all duration-300 rounded-xl">
                           <SelectValue placeholder="How soon do you need to sell?" className="placeholder-consistent" />
                         </SelectTrigger>

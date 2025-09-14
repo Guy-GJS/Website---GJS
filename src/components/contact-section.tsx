@@ -4,6 +4,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { AddressAutocomplete } from "@/components/ui/address-autocomplete";
 import { MessageCircle, ArrowRight, CheckCircle, Clock, Shield, TrendingUp } from "lucide-react";
 
 export const ContactSection = () => {
@@ -111,17 +112,18 @@ export const ContactSection = () => {
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.id]: e.target.value
-    });
+    const { id, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [id]: value
+    }));
   };
 
   const handleSelectChange = (id: string, value: string) => {
-    setFormData({
-      ...formData,
+    setFormData(prev => ({
+      ...prev,
       [id]: value
-    });
+    }));
   };
 
   return (
@@ -207,13 +209,23 @@ export const ContactSection = () => {
                 {/* Property Address */}
                 <div className="space-y-1">
                   <Label htmlFor="address" className="sr-only">Property Address</Label>
-                  <Input 
-                    id="address" 
-                    placeholder="Property Address" 
-                    required 
+                  <AddressAutocomplete
+                    id="address"
+                    placeholder="Property Address"
+                    required
                     className="h-11 border-gray-200 focus:border-primary focus:ring-primary/20 transition-all duration-300 rounded-xl"
                     value={formData.address}
-                    onChange={handleInputChange}
+                    onChange={(value, placeDetails) => {
+                      console.log('Contact form - Address updated:', value);
+                      setFormData(prev => ({
+                        ...prev,
+                        address: value
+                      }));
+                      // Optional: You can also store placeDetails if needed for additional data
+                      if (placeDetails) {
+                        console.log('Contact form - Selected place details:', placeDetails);
+                      }
+                    }}
                   />
                 </div>
                 
