@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { Menu, Home, ArrowRight, Sparkles } from "lucide-react";
+import { Menu, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 
@@ -49,14 +49,12 @@ const Navigation = () => {
           {/* Modern Logo */}
           <Link to="/" className="flex items-center space-x-3 group relative">
             <div className="relative">
-              {/* Sleek logo container */}
-              <div className="relative w-10 h-10 sm:w-11 sm:h-11">
-                <div className="absolute inset-0 bg-gradient-to-br from-primary to-accent rounded-2xl opacity-90 group-hover:opacity-100 transition-all duration-500 group-hover:scale-110 group-hover:rotate-3"></div>
-                <div className="relative w-full h-full bg-gradient-to-br from-primary to-accent rounded-2xl flex items-center justify-center shadow-lg group-hover:shadow-glow transition-all duration-300">
-                  <Home className="w-5 h-5 sm:w-5 sm:h-5 text-white" strokeWidth={2.5} />
-                  <Sparkles className="absolute -top-1 -right-1 w-3 h-3 text-yellow-300 animate-pulse" />
-                </div>
-              </div>
+              {/* Logo image */}
+              <img 
+                src="/fairlogo.png" 
+                alt="Fair Property Group" 
+                className="w-10 h-10 sm:w-12 sm:h-12 object-contain transition-all duration-300 group-hover:scale-110"
+              />
             </div>
             <div className="flex flex-col">
               <span className="text-base sm:text-lg font-bold bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent group-hover:from-primary group-hover:to-accent transition-all duration-300">
@@ -117,9 +115,11 @@ const Navigation = () => {
                     onClick={handleLinkClick}
                     className="flex items-center space-x-3 pb-6 border-b border-border/20"
                   >
-                    <div className="w-10 h-10 bg-gradient-to-br from-primary to-accent rounded-2xl flex items-center justify-center shadow-lg">
-                      <Home className="w-5 h-5 text-white" strokeWidth={2.5} />
-                    </div>
+                    <img 
+                      src="/fairlogo.png" 
+                      alt="Fair Property Group" 
+                      className="w-10 h-10 object-contain"
+                    />
                     <div className="flex flex-col">
                       <span className="text-lg font-bold text-gradient">
                         Fair Property Group
